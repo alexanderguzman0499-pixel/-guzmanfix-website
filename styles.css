@@ -229,4 +229,11 @@ input:focus,select:focus,textarea:focus{border-color:rgba(59,130,246,.55)}
   .gallery{grid-template-columns:1fr}
   .footer__inner{grid-template-columns:1fr}
   .span2{grid-column:auto}
+.hidden{
+  position:absolute !important;
+  left:-10000px !important;
+  top:auto !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
 }
