@@ -163,7 +163,7 @@ langToggle?.addEventListener("click", () => {
 });
 
 // Forms -> mailto
-function mailtoFromForm(form){
+function mailtoFromForm(form){ ... }
   const fd = new FormData(form);
   const name = (fd.get("name") || "").toString();
   const phone = (fd.get("phone") || "").toString();
@@ -186,14 +186,8 @@ function mailtoFromForm(form){
   window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
 }
 
-document.getElementById("quickForm")?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  mailtoFromForm(e.target);
-});
-
-document.getElementById("callbackForm")?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  mailtoFromForm(e.target);
+document.getElementById("quickForm")?.addEventListener("submit", ...)
+document.getElementById("callbackForm")?.addEventListener("submit", ...)
 });
 
 // Default language based on browser (optional)
