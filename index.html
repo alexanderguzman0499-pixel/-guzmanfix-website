@@ -1,49 +1,291 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guzman Reliable Services | Residential & Commercial</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Guzman Reliable Services LLC — Apartment & Home Maintenance. Fast, reliable, professional." />
+  <title>Guzman Reliable Services LLC</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="brand__mark" aria-hidden="true">GR</span>
+        <span class="brand__text">
+          <span class="brand__name">Guzman Reliable Services LLC</span>
+          <span class="brand__tag" data-i18n="tagline">Maintenance • Repairs • Reliability</span>
+        </span>
+      </a>
 
-<header class="header">
-  <img src="assets/logo.png" alt="Guzman Reliable Services Logo" class="logo">
-  <nav>
-    <button onclick="setLang('en')">EN</button>
-    <button onclick="setLang('es')">ES</button>
-  </nav>
-</header>
+      <nav class="nav">
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#why" data-i18n="nav_why">Why us</a>
+        <a href="#gallery" data-i18n="nav_gallery">Work</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </nav>
 
-<section class="hero">
-  <h1 data-en="Reliable Residential & Commercial Services"
-      data-es="Servicios Confiables Residenciales y Comerciales">
-  </h1>
-  <p data-en="Professional maintenance you can trust"
-     data-es="Mantenimiento profesional en el que puedes confiar">
-  </p>
+      <div class="actions">
+        <button class="lang" id="langToggle" type="button" aria-label="Toggle language">
+          <span class="lang__dot"></span>
+          <span id="langLabel">EN</span>
+        </button>
+        <a class="btn btn--primary" href="#callback" data-i18n="cta_callback">Request a callback</a>
+      </div>
 
-  <a href="#contact" class="cta">Request a Callback</a>
-</section>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-<section id="contact" class="contact">
-  <h2>Request a Callback</h2>
+    <div class="mobileNav" id="mobileNav" aria-hidden="true">
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#why" data-i18n="nav_why">Why us</a>
+      <a href="#gallery" data-i18n="nav_gallery">Work</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+      <a class="btn btn--primary" href="#callback" data-i18n="cta_callback">Request a callback</a>
+    </div>
+  </header>
 
-  <form name="callback" method="POST" data-netlify="true" action="/thanks.html">
-    <input type="hidden" name="form-name" value="callback" />
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <button type="submit">Send</button>
-  </form>
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <div class="pill" data-i18n="pill">Fast response • Clean work • Clear communication</div>
+        <h1 data-i18n="hero_title">Reliable maintenance & repairs—done right.</h1>
+        <p class="lead" data-i18n="hero_sub">
+          Apartment turns, punch lists, preventative maintenance, and home repairs. Professional results—without the hassle.
+        </p>
 
-  <p>Email: <a href="mailto:info@guzmanfix.com">info@guzmanfix.com</a></p>
-</section>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#callback" data-i18n="hero_cta_primary">Request a callback</a>
+          <a class="btn btn--ghost" href="#services" data-i18n="hero_cta_secondary">View services</a>
+        </div>
 
-<footer>
-  <p>© Guzman Reliable Services LLC</p>
-</footer>
+        <div class="trust">
+          <div class="trust__item">
+            <span class="trust__num">24–48h</span>
+            <span class="trust__label" data-i18n="trust_1">Typical response</span>
+          </div>
+          <div class="trust__item">
+            <span class="trust__num">5★</span>
+            <span class="trust__label" data-i18n="trust_2">Quality mindset</span>
+          </div>
+          <div class="trust__item">
+            <span class="trust__num">Insured</span>
+            <span class="trust__label" data-i18n="trust_3">Professional service</span>
+          </div>
+        </div>
+      </div>
 
-<script src="app.js"></script>
+      <div class="hero__card">
+        <div class="card">
+          <h3 data-i18n="card_title">Get a quick estimate</h3>
+          <p class="muted" data-i18n="card_sub">Tell me what you need and I’ll reply with next steps.</p>
+
+          <!-- mailto fallback (works anywhere) -->
+          <form class="form" id="quickForm">
+            <label>
+              <span data-i18n="form_name">Name</span>
+              <input name="name" type="text" placeholder="Your name" required />
+            </label>
+
+            <label>
+              <span data-i18n="form_phone">Phone</span>
+              <input name="phone" type="tel" placeholder="(xxx) xxx-xxxx" />
+            </label>
+
+            <label>
+              <span data-i18n="form_service">Service</span>
+              <select name="service">
+                <option value="General" data-i18n="svc_general">General maintenance</option>
+                <option value="Plumbing" data-i18n="svc_plumbing">Plumbing</option>
+                <option value="Electrical" data-i18n="svc_electrical">Electrical</option>
+                <option value="Drywall" data-i18n="svc_drywall">Drywall & paint</option>
+                <option value="Turn" data-i18n="svc_turn">Apartment turns</option>
+              </select>
+            </label>
+
+            <label>
+              <span data-i18n="form_details">Details</span>
+              <textarea name="details" rows="4" placeholder="What’s going on?"></textarea>
+            </label>
+
+            <button class="btn btn--primary btn--full" type="submit" data-i18n="form_send">
+              Send
+            </button>
+
+            <p class="fineprint" data-i18n="fineprint">
+              By submitting, you agree to be contacted by phone/text/email.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2 data-i18n="services_title">Services</h2>
+        <p class="muted" data-i18n="services_sub">From small fixes to full punch lists—handled professionally.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="service">
+          <h3 data-i18n="s1_title">Apartment maintenance</h3>
+          <p data-i18n="s1_desc">Work orders, make-ready turns, punch lists, and preventative maintenance.</p>
+        </article>
+
+        <article class="service">
+          <h3 data-i18n="s2_title">Plumbing</h3>
+          <p data-i18n="s2_desc">Faucets, leaks, toilets, disposals, shut-offs, and basic repairs.</p>
+        </article>
+
+        <article class="service">
+          <h3 data-i18n="s3_title">Electrical</h3>
+          <p data-i18n="s3_desc">Switches, outlets, fixtures, fans, and troubleshooting (non-panel work).</p>
+        </article>
+
+        <article class="service">
+          <h3 data-i18n="s4_title">Drywall & paint</h3>
+          <p data-i18n="s4_desc">Patches, texture matching, caulking, touch-ups, and clean finishes.</p>
+        </article>
+
+        <article class="service">
+          <h3 data-i18n="s5_title">Doors, locks & hardware</h3>
+          <p data-i18n="s5_desc">Handles, locks, hinges, alignment, and replacements.</p>
+        </article>
+
+        <article class="service">
+          <h3 data-i18n="s6_title">Fixtures & installs</h3>
+          <p data-i18n="s6_desc">TV mounts, blinds, shelves, bathroom accessories, and more.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section id="why" class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <h2 data-i18n="why_title">Why choose us</h2>
+        <p class="muted" data-i18n="why_sub">Clear process, quality work, and respect for your property.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="why">
+          <h3 data-i18n="w1_title">Clear communication</h3>
+          <p data-i18n="w1_desc">You’ll know the plan, the cost, and the timeline—no surprises.</p>
+        </div>
+        <div class="why">
+          <h3 data-i18n="w2_title">Clean finish</h3>
+          <p data-i18n="w2_desc">We protect surfaces, clean as we go, and leave the site looking right.</p>
+        </div>
+        <div class="why">
+          <h3 data-i18n="w3_title">Reliable scheduling</h3>
+          <p data-i18n="w3_desc">On-time arrivals and realistic ETAs for every job.</p>
+        </div>
+        <div class="why">
+          <h3 data-i18n="w4_title">Professional standards</h3>
+          <p data-i18n="w4_desc">Tools, safety, and workmanship that property managers can trust.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2 data-i18n="gallery_title">Recent work</h2>
+        <p class="muted" data-i18n="gallery_sub">Add your real photos later—these are placeholders.</p>
+      </div>
+
+      <div class="gallery">
+        <div class="ph" aria-label="Placeholder image"></div>
+        <div class="ph" aria-label="Placeholder image"></div>
+        <div class="ph" aria-label="Placeholder image"></div>
+        <div class="ph" aria-label="Placeholder image"></div>
+        <div class="ph" aria-label="Placeholder image"></div>
+        <div class="ph" aria-label="Placeholder image"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Callback -->
+  <section id="callback" class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <h2 data-i18n="callback_title">Request a callback</h2>
+        <p class="muted" data-i18n="callback_sub">Leave your details and we’ll reach out.</p>
+      </div>
+
+      <div class="card card--wide">
+        <form class="form grid grid--2" id="callbackForm">
+          <label>
+            <span data-i18n="form_name">Name</span>
+            <input name="name" type="text" placeholder="Your name" required />
+          </label>
+
+          <label>
+            <span data-i18n="form_phone">Phone</span>
+            <input name="phone" type="tel" placeholder="(xxx) xxx-xxxx" required />
+          </label>
+
+          <label class="span2">
+            <span data-i18n="form_besttime">Best time to call</span>
+            <input name="besttime" type="text" placeholder="Today after 3pm / Tomorrow morning / etc." />
+          </label>
+
+          <label class="span2">
+            <span data-i18n="form_details">Details</span>
+            <textarea name="details" rows="4" placeholder="Tell us what you need..."></textarea>
+          </label>
+
+          <div class="span2">
+            <button class="btn btn--primary" type="submit" data-i18n="form_send">Send</button>
+            <p class="fineprint" data-i18n="fineprint">By submitting, you agree to be contacted by phone/text/email.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <footer id="contact" class="footer">
+    <div class="container footer__inner">
+      <div>
+        <div class="footer__brand">Guzman Reliable Services LLC</div>
+        <div class="footer__muted" data-i18n="footer_desc">Maintenance & repair services.</div>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title" data-i18n="footer_contact">Contact</div>
+        <a href="mailto:info@guzmanfix.com">info@guzmanfix.com</a>
+        <div class="footer__muted" data-i18n="footer_area">Serving: Clearwater & Tampa Bay</div>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title" data-i18n="footer_hours">Hours</div>
+        <div class="footer__muted" data-i18n="footer_hours_val">Mon–Sat • 8am–6pm</div>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <span class="footer__muted">© <span id="year"></span> Guzman Reliable Services LLC</span>
+      <a class="footer__muted" href="#home" data-i18n="back_top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
