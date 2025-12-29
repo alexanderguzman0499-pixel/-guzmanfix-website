@@ -96,82 +96,34 @@
   netlify-honeypot="bot-field"
 >
   <input type="hidden" name="form-name" value="quick-estimate" />
-  ...
-</form>
 
-  <label>
-    <span data-i18n="form_name">Name</span>
-    <input name="name" type="text" placeholder="Your name" required />
-  </label>
-
-  <label>
-    <span data-i18n="form_phone">Phone</span>
-    <input name="phone" type="tel" placeholder="(xxx) xxx-xxxx" />
-  </label>
-
-  <label>
-    <span data-i18n="form_service">Service</span>
-    <select name="service">
-      <option value="General" data-i18n="svc_general">General maintenance</option>
-      <option value="Plumbing" data-i18n="svc_plumbing">Plumbing</option>
-      <option value="Electrical" data-i18n="svc_electrical">Electrical</option>
-      <option value="Drywall" data-i18n="svc_drywall">Drywall & paint</option>
-      <option value="Turn" data-i18n="svc_turn">Apartment turns</option>
-    </select>
-  </label>
-
-  <label>
-    <span data-i18n="form_details">Details</span>
-    <textarea name="details" rows="4" placeholder="What’s going on?"></textarea>
-  </label>
-
-  <button class="btn btn--primary btn--full" type="submit" data-i18n="form_send">
-    Send
-  </button>
-
-  <p class="fineprint" data-i18n="fineprint">
-    By submitting, you agree to be contacted by phone/text/email.
+  <!-- Honeypot -->
+  <p style="display:none">
+    <label>Don’t fill this out: <input name="bot-field" /></label>
   </p>
+
+  <label>Name</label>
+  <input type="text" name="name" placeholder="Your name" required />
+
+  <label>Phone</label>
+  <input type="tel" name="phone" placeholder="(xxx) xxx-xxxx" required />
+
+  <label>Service</label>
+  <select name="service">
+    <option>General maintenance</option>
+    <option>Apartment turns</option>
+    <option>Repairs</option>
+    <option>Preventative maintenance</option>
+  </select>
+
+  <label>Details</label>
+  <textarea
+    name="details"
+    placeholder="What's going on?"
+  ></textarea>
+
+  <button type="submit">Send</button>
 </form>
-            <label>
-              <span data-i18n="form_name">Name</span>
-              <input name="name" type="text" placeholder="Your name" required />
-            </label>
-
-            <label>
-              <span data-i18n="form_phone">Phone</span>
-              <input name="phone" type="tel" placeholder="(xxx) xxx-xxxx" />
-            </label>
-
-            <label>
-              <span data-i18n="form_service">Service</span>
-              <select name="service">
-                <option value="General" data-i18n="svc_general">General maintenance</option>
-                <option value="Plumbing" data-i18n="svc_plumbing">Plumbing</option>
-                <option value="Electrical" data-i18n="svc_electrical">Electrical</option>
-                <option value="Drywall" data-i18n="svc_drywall">Drywall & paint</option>
-                <option value="Turn" data-i18n="svc_turn">Apartment turns</option>
-              </select>
-            </label>
-
-            <label>
-              <span data-i18n="form_details">Details</span>
-              <textarea name="details" rows="4" placeholder="What’s going on?"></textarea>
-            </label>
-
-            <button class="btn btn--primary btn--full" type="submit" data-i18n="form_send">
-              Send
-            </button>
-
-            <p class="fineprint" data-i18n="fineprint">
-              By submitting, you agree to be contacted by phone/text/email.
-            </p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </main>
-
   <!-- Services -->
   <section class="section">
   <div class="container">
