@@ -296,3 +296,29 @@ input:focus,select:focus,textarea:focus{border-color:rgba(59,130,246,.55)}
 
 .float-call{ background:#2563eb; color:#fff; }
 .float-whatsapp{ background:#22c55e; color:#fff; }
+.hidden { display: none; }
+
+.services-group {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.services-group legend {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  padding: 0 6px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+
+.check input {
+  accent-color: #3b82f6;
+}
