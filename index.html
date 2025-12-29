@@ -88,42 +88,110 @@
           <p class="muted" data-i18n="card_sub">Tell me what you need and I’ll reply with next steps.</p>
 
           <!-- mailto fallback (works anywhere) -->
-<form
-  name="quick-estimate"
-  method="POST"
-  action="/thanks.html"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
->
-  <input type="hidden" name="form-name" value="quick-estimate" />
-
-  <!-- Honeypot -->
-  <p style="display:none">
-    <label>Don’t fill this out: <input name="bot-field" /></label>
+<!-- Contact / Estimate -->
+<div class="card card--form">
+  <h2 class="card__title" data-i18n="form_title">Get a quick estimate</h2>
+  <p class="card__subtitle" data-i18n="form_subtitle">
+    Tell me what you need and I’ll reply with next steps.
   </p>
 
-  <label>Name</label>
-  <input type="text" name="name" placeholder="Your name" required />
+  <form
+    class="contact-form"
+    name="quick-estimate"
+    method="POST"
+    action="/thanks.html"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+  >
+    <!-- Required by Netlify -->
+    <input type="hidden" name="form-name" value="quick-estimate" />
 
-  <label>Phone</label>
-  <input type="tel" name="phone" placeholder="(xxx) xxx-xxxx" required />
+    <!-- Honeypot (anti-spam) -->
+    <p class="hidden">
+      <label>
+        Don’t fill this out if you're human:
+        <input name="bot-field" />
+      </label>
+    </p>
 
-  <label>Service</label>
-  <select name="service">
-    <option>General maintenance</option>
-    <option>Apartment turns</option>
-    <option>Repairs</option>
-    <option>Preventative maintenance</option>
-  </select>
+    <label>
+      <span data-i18n="form_name">Name</span>
+      <input name="name" type="text" placeholder="Your name" required />
+    </label>
 
-  <label>Details</label>
-  <textarea
-    name="details"
-    placeholder="What's going on?"
-  ></textarea>
+    <label>
+      <span data-i18n="form_phone">Phone</span>
+      <input name="phone" type="tel" placeholder="(xxx) xxx-xxxx" required />
+    </label>
 
-  <button type="submit">Send</button>
-</form>
+    <fieldset class="services-group">
+      <legend data-i18n="form_service">Services needed</legend>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="General maintenance" />
+        General maintenance
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Plumbing" />
+        Plumbing
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Electrical" />
+        Electrical
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Drywall & painting" />
+        Drywall & painting
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Apartment turns / Make-ready" />
+        Apartment turns / Make-ready
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Appliance repair" />
+        Appliance repair
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="HVAC / AC issues" />
+        HVAC / AC issues
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Doors & locks" />
+        Doors & locks
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Windows & screens" />
+        Windows & screens
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="services[]" value="Other" />
+        Other
+      </label>
+    </fieldset>
+
+    <label>
+      <span data-i18n="form_details">Details</span>
+      <textarea name="details" rows="4" placeholder="What's going on?"></textarea>
+    </label>
+
+    <button class="btn btn--primary btn--full" type="submit" data-i18n="form_send">
+      Send
+    </button>
+
+    <p class="fineprint" data-i18n="fineprint">
+      By submitting, you agree to be contacted by phone/text/email.
+    </p>
+  </form>
+</div>
   <!-- Services -->
   <section class="section">
   <div class="container">
