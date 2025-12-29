@@ -88,18 +88,16 @@
           <p class="muted" data-i18n="card_sub">Tell me what you need and I’ll reply with next steps.</p>
 
           <!-- mailto fallback (works anywhere) -->
-         <form
-  class="form"
+<form
   name="quick-estimate"
   method="POST"
-  action="/thank-you.html"
+  action="/thanks.html"
   data-netlify="true"
-  data-netlify-honeypot="bot-field"
+  netlify-honeypot="bot-field"
 >
   <input type="hidden" name="form-name" value="quick-estimate" />
-  <p class="hidden">
-    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-  </p>
+  ...
+</form>
 
   <label>
     <span data-i18n="form_name">Name</span>
@@ -276,17 +274,15 @@
 
       <div class="card card--wide">
 <form
-  class="form grid grid--2"
   name="callback-request"
   method="POST"
-  action="/thank-you.html"
+  action="/thanks.html"
   data-netlify="true"
-  data-netlify-honeypot="bot-field"
+  netlify-honeypot="bot-field"
 >
   <input type="hidden" name="form-name" value="callback-request" />
-  <p class="hidden">
-    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-  </p>
+  ...
+</form>
 
   <label>
     <span data-i18n="form_name">Name</span>
