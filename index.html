@@ -1,326 +1,212 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guzman Reliable Services LLC</title>
+  <meta name="description" content="Maintenance, repairs, apartment turns, flooring, drywall, plumbing, electrical. Guzman Reliable Services LLC." />
   <link rel="stylesheet" href="styles.css" />
-  <meta name="robots" content="index,follow" />
-<link rel="canonical" href="https://guzmanfix.com/" />
-
-<meta property="og:title" content="Guzman Reliable Services LLC" />
-<meta property="og:description" content="Maintenance & repairs in Clearwater & Tampa Bay. Fast response, clean work, reliable service." />
-<meta property="og:type" content="website" />
 </head>
 
 <body>
-  <!-- Top bar -->
-  <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="#home" aria-label="Go to home">
-        <span class="brand__mark" aria-hidden="true">GR</span>
-        <span class="brand__text">
-          <span class="brand__name">Guzman Reliable Services LLC</span>
-          <span class="brand__tag" data-i18n="tagline">Maintenance • Repairs • Reliability</span>
-        </span>
-      </a>
-
-      <nav class="nav">
-        <a href="#services" data-i18n="nav_services">Services</a>
-        <a href="#why" data-i18n="nav_why">Why us</a>
-        <a href="#gallery" data-i18n="nav_gallery">Work</a>
-        <a href="#contact" data-i18n="nav_contact">Contact</a>
-      </nav>
-
-      <div class="actions">
-        <button class="lang" id="langToggle" type="button" aria-label="Toggle language">
-          <span class="lang__dot"></span>
-          <span id="langLabel">EN</span>
-        </button>
-        <a class="btn btn--primary" href="#callback" data-i18n="cta_callback">Request a callback</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <img src="assets/logo-transparent.png" alt="Guzman Reliable Services LLC logo" class="brand__logo" />
+      <div class="brand__text">
+        <strong class="brand__name">Guzman Reliable Services LLC</strong>
+        <span class="brand__tagline">Maintenance • Repairs • Reliability</span>
       </div>
-
-      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
 
-    <div class="mobileNav" id="mobileNav" aria-hidden="true">
-      <a href="#services" data-i18n="nav_services">Services</a>
-      <a href="#why" data-i18n="nav_why">Why us</a>
-      <a href="#gallery" data-i18n="nav_gallery">Work</a>
-      <a href="#contact" data-i18n="nav_contact">Contact</a>
-      <a class="btn btn--primary" href="#callback" data-i18n="cta_callback">Request a callback</a>
-    </div>
+    <nav class="nav">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+      <a class="nav__cta" href="#estimate">Request a callback</a>
+    </nav>
   </header>
 
   <!-- Hero -->
-  <main id="home" class="hero">
-    <div class="container hero__inner">
-      <div class="hero__copy">
-        <div class="pill" data-i18n="pill">Fast response • Clean work • Clear communication</div>
-        <h1 data-i18n="hero_title">Reliable maintenance & repairs—done right.</h1>
-        <p class="lead" data-i18n="hero_sub">
-          Apartment turns, punch lists, preventative maintenance, and home repairs. Professional results—without the hassle.
-        </p>
+  <main class="hero">
+    <section class="hero__left">
+      <h1>Reliable maintenance & repairs—done right.</h1>
+      <p>
+        Apartment turns, punch lists, preventative maintenance, and home repairs.
+        Professional results—without the hassle.
+      </p>
 
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="#callback" data-i18n="hero_cta_primary">Request a callback</a>
-          <a class="btn btn--ghost" href="#services" data-i18n="hero_cta_secondary">View services</a>
+      <div class="hero__badges">
+        <div class="badge">
+          <div class="badge__big">24–48h</div>
+          <div class="badge__small">Typical response</div>
         </div>
-
-        <div class="trust">
-          <div class="trust__item">
-            <span class="trust__num">24–48h</span>
-            <span class="trust__label" data-i18n="trust_1">Typical response</span>
-          </div>
-          <div class="trust__item">
-            <span class="trust__num">5★</span>
-            <span class="trust__label" data-i18n="trust_2">Quality mindset</span>
-          </div>
-          <div class="trust__item">
-            <span class="trust__num">Insured</span>
-            <span class="trust__label" data-i18n="trust_3">Professional service</span>
-          </div>
+        <div class="badge">
+          <div class="badge__big">5★</div>
+          <div class="badge__small">Quality mindset</div>
+        </div>
+        <div class="badge">
+          <div class="badge__big">Insured</div>
+          <div class="badge__small">Professional service</div>
         </div>
       </div>
+    </section>
 
-      <div class="hero__card">
-        <div class="card">
-          <h3 data-i18n="card_title">Get a quick estimate</h3>
-          <p class="muted" data-i18n="card_sub">Tell me what you need and I’ll reply with next steps.</p>
+    <!-- Form (Netlify) -->
+    <section id="estimate" class="hero__right">
+      <div class="card">
+        <h2>Get a quick estimate</h2>
+        <p class="muted">Tell me what you need and I’ll reply with next steps.</p>
 
-          <!-- mailto fallback (works anywhere) -->
-<!-- Contact / Estimate -->
-<div class="card card--form">
-  <h2 class="card__title" data-i18n="form_title">Get a quick estimate</h2>
-  <p class="card__subtitle" data-i18n="form_subtitle">
-    Tell me what you need and I’ll reply with next steps.
-  </p>
+        <form
+          name="estimate"
+          method="POST"
+          data-netlify="true"
+          action="/thanks.html"
+          class="form"
+        >
+          <!-- Netlify needs this hidden input -->
+          <input type="hidden" name="form-name" value="estimate" />
 
-  <form
-    class="contact-form"
-    name="quick-estimate"
-    method="POST"
-    action="/thanks.html"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-  >
-    <!-- Required by Netlify -->
-    <input type="hidden" name="form-name" value="quick-estimate" />
+          <label class="field">
+            <span>Name</span>
+            <input name="name" type="text" placeholder="Your name" required />
+          </label>
 
-    <!-- Honeypot (anti-spam) -->
-    <p class="hidden">
-      <label>
-        <input name="bot-field" />
-      </label>
-    </p>
+          <label class="field">
+            <span>Phone</span>
+            <input name="phone" type="tel" placeholder="(XXX) XXX-XXXX" required />
+          </label>
 
-    <label>
-      <span data-i18n="form_name">Name</span>
-      <input name="name" type="text" placeholder="Your name" required />
-    </label>
+          <fieldset class="fieldset">
+            <legend>Services needed</legend>
 
-    <label>
-      <span data-i18n="form_phone">Phone</span>
-      <input name="phone" type="tel" placeholder="(xxx) xxx-xxxx" required />
-    </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="General maintenance" />
+              <span>General maintenance</span>
+            </label>
 
-    <fieldset class="services-group">
-      <legend data-i18n="form_service">Services needed</legend>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Plumbing" />
+              <span>Plumbing</span>
+            </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="General maintenance" />
-        General maintenance
-      </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Electrical" />
+              <span>Electrical</span>
+            </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Plumbing" />
-        Plumbing
-      </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Drywall & paint" />
+              <span>Drywall & paint</span>
+            </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Electrical" />
-        Electrical
-      </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Flooring" />
+              <span>Flooring</span>
+            </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Drywall & painting" />
-        Drywall & painting
-      </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Apartment turns" />
+              <span>Apartment turns</span>
+            </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Apartment turns / Make-ready" />
-        Apartment turns / Make-ready
-      </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Cabinets/Trim" />
+              <span>Cabinets / trim</span>
+            </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Appliance repair" />
-        Appliance repair
-      </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Doors/Windows" />
+              <span>Doors / windows</span>
+            </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="HVAC / AC issues" />
-        HVAC / AC issues
-      </label>
+            <label class="check">
+              <input type="checkbox" name="services[]" value="Other" />
+              <span>Other</span>
+            </label>
+          </fieldset>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Doors & locks" />
-        Doors & locks
-      </label>
+          <label class="field">
+            <span>Details</span>
+            <textarea name="details" rows="4" placeholder="What’s going on?"></textarea>
+          </label>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Windows & screens" />
-        Windows & screens
-      </label>
+          <button class="btn" type="submit">Send</button>
 
-      <label class="check">
-        <input type="checkbox" name="services[]" value="Other" />
-        Other
-      </label>
-    </fieldset>
+          <p class="fineprint">
+            By submitting, you agree to be contacted by phone/text/email.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-    <label>
-      <span data-i18n="form_details">Details</span>
-      <textarea name="details" rows="4" placeholder="What's going on?"></textarea>
-    </label>
-
-    <button class="btn btn--primary btn--full" type="submit" data-i18n="form_send">
-      Send
-    </button>
-
-    <p class="fineprint" data-i18n="fineprint">
-      By submitting, you agree to be contacted by phone/text/email.
-    </p>
-  </form>
-</div>
   <!-- Services -->
-  <section class="section">
-  <div class="container">
-    <div class="section__head">
-      <h2>Service Areas</h2>
-      <p class="muted">Clearwater • St. Petersburg • Tampa Bay • Pinellas • Hillsborough</p>
-    </div>
-  </div>
-</section>
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Services</h2>
+        <p class="muted">Residential & commercial maintenance services.</p>
+      </div>
 
-      <div class="grid grid--3">
-        <article class="service">
-          <h3 data-i18n="s1_title">Apartment maintenance</h3>
-          <p data-i18n="s1_desc">Work orders, make-ready turns, punch lists, and preventative maintenance.</p>
-        </article>
-
-        <article class="service">
-          <h3 data-i18n="s2_title">Plumbing</h3>
-          <p data-i18n="s2_desc">Faucets, leaks, toilets, disposals, shut-offs, and basic repairs.</p>
-        </article>
-
-        <article class="service">
-          <h3 data-i18n="s3_title">Electrical</h3>
-          <p data-i18n="s3_desc">Switches, outlets, fixtures, fans, and troubleshooting (non-panel work).</p>
-        </article>
-
-        <article class="service">
-          <h3 data-i18n="s4_title">Drywall & paint</h3>
-          <p data-i18n="s4_desc">Patches, texture matching, caulking, touch-ups, and clean finishes.</p>
-        </article>
-
-        <article class="service">
-          <h3 data-i18n="s5_title">Doors, locks & hardware</h3>
-          <p data-i18n="s5_desc">Handles, locks, hinges, alignment, and replacements.</p>
-        </article>
-
-        <article class="service">
-          <h3 data-i18n="s6_title">Fixtures & installs</h3>
-          <p data-i18n="s6_desc">TV mounts, blinds, shelves, bathroom accessories, and more.</p>
-        </article>
+      <div class="grid">
+        <div class="service-card">General maintenance</div>
+        <div class="service-card">Plumbing</div>
+        <div class="service-card">Electrical</div>
+        <div class="service-card">Drywall & painting</div>
+        <div class="service-card">Flooring installation</div>
+        <div class="service-card">Apartment turns</div>
+        <div class="service-card">Cabinets / trim</div>
+        <div class="service-card">Doors / windows</div>
       </div>
     </div>
   </section>
 
-  <!-- Why -->
-  <section id="why" class="section section--alt">
+  <!-- Work Gallery -->
+  <section id="work" class="section section--dark">
     <div class="container">
       <div class="section__head">
-        <h2 data-i18n="why_title">Why choose us</h2>
-        <p class="muted" data-i18n="why_sub">Clear process, quality work, and respect for your property.</p>
-      </div>
-
-      <div class="grid grid--2">
-        <div class="why">
-          <h3 data-i18n="w1_title">Clear communication</h3>
-          <p data-i18n="w1_desc">You’ll know the plan, the cost, and the timeline—no surprises.</p>
-        </div>
-        <div class="why">
-          <h3 data-i18n="w2_title">Clean finish</h3>
-          <p data-i18n="w2_desc">We protect surfaces, clean as we go, and leave the site looking right.</p>
-        </div>
-        <div class="why">
-          <h3 data-i18n="w3_title">Reliable scheduling</h3>
-          <p data-i18n="w3_desc">On-time arrivals and realistic ETAs for every job.</p>
-        </div>
-        <div class="why">
-          <h3 data-i18n="w4_title">Professional standards</h3>
-          <p data-i18n="w4_desc">Tools, safety, and workmanship that property managers can trust.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery" class="section">
-    <div class="container">
-      <div class="section__head">
-        <h2 data-i18n="gallery_title">Recent work</h2>
-        <p class="muted" data-i18n="gallery_sub">Add your real photos later—these are placeholders.</p>
+        <h2>Recent Work</h2>
+        <p class="muted">A few examples of our recent projects.</p>
       </div>
 
       <div class="gallery">
-        <div class="ph" aria-label="Placeholder image"></div>
-        <div class="ph" aria-label="Placeholder image"></div>
-        <div class="ph" aria-label="Placeholder image"></div>
-        <div class="ph" aria-label="Placeholder image"></div>
-        <div class="ph" aria-label="Placeholder image"></div>
-        <div class="ph" aria-label="Placeholder image"></div>
+        <img src="assets/work1.jpg" alt="Work photo 1" loading="lazy" />
+        <img src="assets/work2.jpg" alt="Work photo 2" loading="lazy" />
+        <img src="assets/work3.jpg" alt="Work photo 3" loading="lazy" />
+        <img src="assets/work4.jpg" alt="Work photo 4" loading="lazy" />
+        <img src="assets/work5.jpg" alt="Work photo 5" loading="lazy" />
+        <img src="assets/work6.jpg" alt="Work photo 6" loading="lazy" />
       </div>
     </div>
   </section>
-  <!-- Contact -->
+
+  <!-- Footer / Contact -->
   <footer id="contact" class="footer">
     <div class="container footer__inner">
-      <div>
-        <div class="footer__brand">Guzman Reliable Services LLC</div>
-        <div class="footer__muted" data-i18n="footer_desc">Maintenance & repair services.</div>
+      <div class="footer__brand">
+        <img src="assets/logo-transparent.png" alt="Logo" class="footer__logo" />
+        <div>
+          <strong>Guzman Reliable Services LLC</strong>
+          <div class="muted">Residential & Commercial</div>
+        </div>
       </div>
 
-      <div class="footer__col">
-        <div class="footer__title" data-i18n="footer_contact">Contact</div>
-        <a href="mailto:info@guzmanfix.com">info@guzmanfix.com</a>
-        <div class="footer__muted" data-i18n="footer_area">Serving: Clearwater & Tampa Bay</div>
+      <div class="footer__links">
+        <a href="#estimate">Request a callback</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
       </div>
 
-      <div class="footer__col">
-        <div class="foot_ttle" data-i18n="footer_hours">Hours</div>
-        <div class="footer__muted" data-i18n="footer_hours_val">Mon–Sat • 8am–6pm</div>
+      <div class="footer__copy muted">
+        © <span id="year"></span> Guzman Reliable Services LLC
       </div>
     </div>
 
-    <div class="container footer__bottom">
-      <span class="footer__muted">© <span id="year"></span> Guzman Reliable Services LLC</span>
-      <a class="footer__muted" href="#home" data-i18n="back_top">Back to top</a>
-    </div>
-  </footer>.
-<!-- Floating Contact Buttons -->
-<div class="floating-buttons">
-  <a href="tel:+17274795969" class="float-call" aria-label="Call us">
-    📞
-  </a>
-
-  <a
-    href="https://wa.me/17274795969?text=Hello%20I%20need%20maintenance%20service"
-    class="float-whatsapp"
-    target="_blank"
-    aria-label="WhatsApp us"
-  >
-    💬
-  </a>
-</div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
 </body>
 </html>
