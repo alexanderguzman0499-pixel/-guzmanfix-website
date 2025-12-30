@@ -333,3 +333,31 @@ input:focus, textarea:focus{
 .emergency-link:hover {
   color: #ff8787;
 }
+/* SMS floating button */
+.sms-float {
+  position: fixed;
+  bottom: 92px; /* queda arriba del WhatsApp */
+  right: 22px;
+  width: 58px;
+  height: 58px;
+  background: #3b82f6; /* azul SMS */
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+  z-index: 999;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.sms-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.45);
+}
+
+.sms-float svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
