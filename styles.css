@@ -325,3 +325,11 @@ input:focus, textarea:focus{
     grid-template-columns: 1fr;
   }
 }
+.emergency-link {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.emergency-link:hover {
+  color: #ff8787;
+}
