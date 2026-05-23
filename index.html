@@ -16,6 +16,7 @@
   <title>Guzman Reliable Services LLC</title>
   <meta name="description" content="Maintenance, repairs, apartment turns, flooring, drywall, plumbing, electrical. Guzman Reliable Services LLC." />
   <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
 </head>
 
 <body>
@@ -29,13 +30,16 @@
       </div>
     </div>
 
-  <nav class="nav">
-  <a href="#services">Services</a>
-  <a href="#work">Work</a>
-  <a href="#emergency" class="emergency-link">Emergency</a>
-  <a href="#contact">Contact</a>
-  <a class="btn primary" href="#estimate">Request a callback</a>
-</nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav" id="mobileNav">
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#emergency" class="emergency-link">Emergency</a>
+    <a href="#contact">Contact</a>
+    <a class="btn primary" href="#estimate">Request a callback</a>
+  </nav>
   </header>
 <!-- Emergency banner -->
   <section id="emergency" class="emergency">
@@ -73,11 +77,16 @@
   <!-- Hero -->
   <main class="hero">
     <section class="hero__left">
+      <div class="hero__pill">Tampa Bay's Trusted Handyman</div>
       <h1>Reliable maintenance & repairs—done right.</h1>
       <p>
         Apartment turns, punch lists, preventative maintenance, and home repairs.
         Professional results—without the hassle.
       </p>
+      <div class="hero__ctas">
+        <a href="#estimate" class="btn--hero-primary">Get Free Estimate</a>
+        <a href="tel:+17274795969" class="btn--hero-secondary">📞 Call (727) 479-5969</a>
+      </div>
 
       <div class="hero__badges">
         <div class="badge">
@@ -195,14 +204,14 @@
       </div>
 
       <div class="grid">
-        <div class="service-card"><span class="sc-icon">🔧</span>General maintenance</div>
-        <div class="service-card"><span class="sc-icon">💧</span>Plumbing</div>
-        <div class="service-card"><span class="sc-icon">⚡</span>Electrical</div>
-        <div class="service-card"><span class="sc-icon">🎨</span>Drywall & painting</div>
-        <div class="service-card"><span class="sc-icon">🪵</span>Flooring installation</div>
-        <div class="service-card"><span class="sc-icon">🏠</span>Apartment turns</div>
-        <div class="service-card"><span class="sc-icon">🪚</span>Cabinets / trim</div>
-        <div class="service-card"><span class="sc-icon">🚪</span>Doors / windows</div>
+        <a href="#pricing" class="service-card reveal"><span class="sc-icon">🔧</span>General maintenance</a>
+        <a href="#pricing" class="service-card reveal reveal-delay-1"><span class="sc-icon">💧</span>Plumbing</a>
+        <a href="#pricing" class="service-card reveal reveal-delay-2"><span class="sc-icon">⚡</span>Electrical</a>
+        <a href="#pricing" class="service-card reveal reveal-delay-3"><span class="sc-icon">🎨</span>Drywall & painting</a>
+        <a href="#pricing" class="service-card reveal"><span class="sc-icon">🪵</span>Flooring installation</a>
+        <a href="#pricing" class="service-card reveal reveal-delay-1"><span class="sc-icon">🏠</span>Apartment turns</a>
+        <a href="#pricing" class="service-card reveal reveal-delay-2"><span class="sc-icon">🪚</span>Cabinets / trim</a>
+        <a href="#pricing" class="service-card reveal reveal-delay-3"><span class="sc-icon">🚪</span>Doors / windows</a>
       </div>
     </div>
   </section>
@@ -217,15 +226,57 @@
       </div>
 
       <div class="gallery">
-        <img src="assets/work1.jpg" alt="Work photo 1" loading="lazy" />
-        <img src="assets/work2.jpg" alt="Work photo 2" loading="lazy" />
-        <img src="assets/work3.jpg" alt="Work photo 3" loading="lazy" />
-        <img src="assets/work4.jpg" alt="Work photo 4" loading="lazy" />
-        <img src="assets/work5.jpg" alt="Work photo 5" loading="lazy" />
-        <img src="assets/work6.jpg" alt="Work photo 6" loading="lazy" />
+        <div class="carousel" id="gallery-carousel">
+          <div class="carousel__track" id="carouselTrack">
+            <div class="carousel__slide"><img src="assets/Work1.jpg" alt="Work photo 1" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work2.jpg" alt="Work photo 2" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work3.jpg" alt="Work photo 3" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work4.jpg" alt="Work photo 4" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work5.jpg" alt="Work photo 5" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work6.jpg" alt="Work photo 6" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work7.jpg" alt="Work photo 7" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work8.jpg" alt="Work photo 8" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work9.jpg" alt="Work photo 9" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="assets/Work10.jpg" alt="Work photo 10" loading="lazy" /></div>
+          </div>
+          <button class="carousel__btn carousel__btn--prev" id="prevBtn" aria-label="Previous">&#8249;</button>
+          <button class="carousel__btn carousel__btn--next" id="nextBtn" aria-label="Next">&#8250;</button>
+          <div class="carousel__dots" id="carouselDots"></div>
+        </div>
       </div>
     </div>
   </section>
+<!-- How It Works -->
+<section id="process" class="section section--process">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="section-badge">Simple Process</div>
+      <h2>How It Works</h2>
+      <p class="muted">Three easy steps to get your job done right.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-step__num">1</div>
+        <div class="process-step__icon">📞</div>
+        <h3>Contact Us</h3>
+        <p>Call, text, or fill out the form. We respond within 24 hours — no runaround.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-step__num">2</div>
+        <div class="process-step__icon">📋</div>
+        <h3>Free Estimate</h3>
+        <p>We assess the job and give you a clear, transparent quote. No hidden fees, no surprises.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-step__num">3</div>
+        <div class="process-step__icon">✅</div>
+        <h3>Job Done Right</h3>
+        <p>We show up on time, do the work professionally, and clean up before we leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Reviews Section -->
 <section id="reviews" style="background:#1B2A4A;padding:60px 20px;">
   <div style="max-width:1100px;margin:0 auto;">
@@ -470,5 +521,7 @@
     <path d="M20 2H4C2.9 2 2 2.9 2 4v14c0 1.1.9 2 2 2h3v3c0 .55.63.86 1.07.52L12.5 20H20c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
   </svg>
 </a>
+<!-- Scroll to top -->
+<button id="scrollTop" aria-label="Back to top">↑</button>
 </body>
 </html>
