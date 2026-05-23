@@ -54,15 +54,20 @@ a:hover { opacity: .88; }
 
 /* ── Header ── */
 .header {
-  width: min(1200px, 94%);
-  margin: 0 auto;
-  padding: 20px 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 14px 4%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   border-bottom: 1px solid var(--border);
-  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10, 22, 40, 0.9);
+  box-shadow: 0 2px 32px rgba(0, 0, 0, 0.45);
 }
 
 .header::after {
@@ -110,7 +115,20 @@ a:hover { opacity: .88; }
   color: var(--muted);
   letter-spacing: .03em;
   transition: color .2s;
+  position: relative;
 }
+.nav a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: width .25s ease;
+}
+.nav a:not(.btn):hover::after { width: 100%; }
 .nav a:hover { color: var(--gold); opacity: 1; }
 
 .nav__cta {
@@ -129,6 +147,27 @@ a:hover { opacity: .88; }
   transform: translateY(-1px);
   box-shadow: 0 6px 24px rgba(201,168,76,.4);
   opacity: 1 !important;
+}
+
+.btn.primary {
+  display: inline-block;
+  width: auto;
+  padding: 9px 20px;
+  border-radius: 8px;
+  background: var(--gold);
+  color: var(--navy3) !important;
+  font-weight: 700;
+  font-size: .85rem;
+  letter-spacing: .04em;
+  box-shadow: 0 4px 16px rgba(201,168,76,.3);
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn.primary:hover {
+  background: var(--gold2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(201,168,76,.4);
+  opacity: 1 !important;
+  filter: none;
 }
 
 /* ── Emergency ── */
@@ -161,6 +200,7 @@ a:hover { opacity: .88; }
   background: rgba(239,68,68,.12);
   border: 1px solid rgba(239,68,68,.35);
   color: #ff7070;
+  animation: pulse-red 2.4s ease-in-out infinite;
 }
 .emergency__text h2 {
   font-family: 'Cinzel', serif;
@@ -234,7 +274,7 @@ a:hover { opacity: .88; }
   box-shadow: 0 8px 32px rgba(0,0,0,.3);
   transition: box-shadow .3s;
 }
-.card:hover { box-shadow: 0 12px 48px rgba(0,0,0,.4); }
+.card:hover { box-shadow: 0 12px 48px rgba(0,0,0,.4), 0 0 0 1px rgba(201,168,76,.28); }
 .card h2 {
   font-family: 'Cinzel', serif;
   font-size: 1.3rem;
@@ -340,6 +380,21 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
 }
 .section__head .muted { font-size: .97rem; margin-top: 4px; }
 
+.section-badge {
+  display: inline-block;
+  background: var(--gold-dim);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 
 .service-card {
@@ -349,14 +404,26 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
   padding: 18px;
   font-weight: 600;
   font-size: .95rem;
-  transition: background .2s, border-color .2s, transform .2s;
+  transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
   cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.sc-icon {
+  font-size: 1.45rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(201,168,76,.25));
+  transition: transform .2s;
 }
 .service-card:hover {
   background: var(--gold-dim);
   border-color: var(--gold);
   transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(201,168,76,.1);
 }
+.service-card:hover .sc-icon { transform: scale(1.15); }
 
 /* ── Gallery ── */
 .section--dark { background: rgba(0,0,0,.25); }
@@ -437,6 +504,11 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,.5); }
+  60%       { box-shadow: 0 0 0 9px rgba(239,68,68,0); }
 }
 
 .section { animation: fadeUp .6s ease both; }
