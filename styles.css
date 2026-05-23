@@ -861,9 +861,8 @@ section#about > div > div:first-child > div:nth-child(4) > div {
   color: var(--text) !important;
 }
 
-/* Areas */
-section#areas { background: var(--navy3) !important; }
-section#areas h2 { font-family: 'Cinzel', serif !important; }
+/* Areas — handled by .section--areas class */
+.section--areas .section__head h2 { font-family: 'Cinzel', serif; }
 
 /* ── Stats Bar ── */
 .stats-bar {
@@ -1002,16 +1001,86 @@ section#areas h2 { font-family: 'Cinzel', serif !important; }
 }
 .faq-item.open .faq-answer { max-height: 400px; padding: 0 24px 22px; }
 
-/* ── Map ── */
-.section--map { background: var(--navy2); }
-.map-wrapper {
-  border-radius: 16px;
+/* ── Service Areas + Map (combined) ── */
+.section--areas {
+  position: relative;
+  padding: 80px 0;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 32px rgba(0,0,0,.4);
-  height: 380px;
+  min-height: 680px;
 }
-.map-wrapper iframe { width: 100%; height: 100%; display: block; border: none; }
+.areas__map-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.areas__map-bg iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+  filter: saturate(0.3) brightness(0.28);
+  pointer-events: none;
+}
+.areas__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,22,40,.72) 0%, rgba(10,22,40,.55) 50%, rgba(10,22,40,.85) 100%);
+}
+.areas__content {
+  position: relative;
+  z-index: 2;
+}
+.areas__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 0 0 36px;
+}
+.area-card {
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201,168,76,.22);
+  border-radius: 14px;
+  padding: 20px 14px;
+  text-align: center;
+  transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+  cursor: default;
+}
+.area-card:hover {
+  background: rgba(201,168,76,.13);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.area-card__pin { font-size: 1.35rem; margin-bottom: 7px; }
+.area-card__city { color: var(--gold); font-weight: 700; font-size: .92rem; }
+.area-card__county { color: var(--muted); font-size: .76rem; margin-top: 3px; }
+.areas__cta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 28px 32px;
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: 16px;
+}
+.areas__cta p {
+  color: var(--muted);
+  font-size: .98rem;
+  font-weight: 500;
+  flex: 1;
+  min-width: 180px;
+}
+@media (max-width: 700px) {
+  .areas__grid { grid-template-columns: repeat(2, 1fr); }
+  .areas__cta { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+@media (max-width: 380px) { .areas__grid { grid-template-columns: 1fr; } }
 
 /* ── Footer redesign ── */
 .footer {
