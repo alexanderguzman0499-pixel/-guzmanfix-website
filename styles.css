@@ -1031,32 +1031,48 @@ section#about > div > div:first-child > div:nth-child(4) > div {
   position: relative;
   z-index: 2;
 }
-.areas__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+.areas__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 0 0 36px;
 }
-.area-card {
+.area-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  border-radius: 999px;
   background: rgba(255,255,255,.07);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(201,168,76,.22);
-  border-radius: 14px;
-  padding: 20px 14px;
-  text-align: center;
-  transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+  border: 1px solid rgba(255,255,255,.14);
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .02em;
   cursor: default;
+  transition: background .2s, border-color .2s, color .2s, transform .18s, box-shadow .2s;
 }
-.area-card:hover {
-  background: rgba(201,168,76,.13);
+.area-tag:hover {
+  background: var(--gold);
   border-color: var(--gold);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  color: var(--navy3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201,168,76,.35);
 }
-.area-card__pin { font-size: 1.35rem; margin-bottom: 7px; }
-.area-card__city { color: var(--gold); font-weight: 700; font-size: .92rem; }
-.area-card__county { color: var(--muted); font-size: .76rem; margin-top: 3px; }
+.area-tag--primary {
+  background: rgba(201,168,76,.14);
+  border-color: rgba(201,168,76,.45);
+  color: var(--gold);
+  font-weight: 600;
+}
+.area-tag--more {
+  background: transparent;
+  border-color: rgba(255,255,255,.1);
+  color: var(--muted);
+  font-style: italic;
+  font-size: .84rem;
+}
 .areas__cta {
   display: flex;
   align-items: center;
@@ -1077,10 +1093,8 @@ section#about > div > div:first-child > div:nth-child(4) > div {
   min-width: 180px;
 }
 @media (max-width: 700px) {
-  .areas__grid { grid-template-columns: repeat(2, 1fr); }
   .areas__cta { flex-direction: column; align-items: flex-start; gap: 14px; }
 }
-@media (max-width: 380px) { .areas__grid { grid-template-columns: 1fr; } }
 
 /* ── Footer redesign ── */
 .footer {
