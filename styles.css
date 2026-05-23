@@ -30,12 +30,62 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text);
-  background: var(--navy3);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,.08) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(27,42,74,.9) 0%, transparent 60%);
+  background: #060e1a;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* ── Animated aurora background ── */
+.bg-aura {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #060e1a;
+  overflow: hidden;
+}
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+  animation: orb-drift ease-in-out infinite alternate;
+}
+.bg-orb--1 {
+  width: 70vw; height: 70vw;
+  background: radial-gradient(circle, rgba(201,168,76,.16) 0%, rgba(201,120,20,.06) 50%, transparent 75%);
+  top: -20%; left: -20%;
+  animation-duration: 18s;
+}
+.bg-orb--2 {
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(27,42,100,.95) 0%, rgba(60,30,140,.15) 55%, transparent 80%);
+  bottom: -15%; right: -15%;
+  animation-duration: 22s;
+  animation-direction: alternate-reverse;
+}
+.bg-orb--3 {
+  width: 45vw; height: 45vw;
+  background: radial-gradient(circle, rgba(201,168,76,.10) 0%, transparent 70%);
+  top: 45%; left: 50%;
+  animation-duration: 15s;
+  animation-delay: -8s;
+}
+.bg-orb--4 {
+  width: 38vw; height: 38vw;
+  background: radial-gradient(circle, rgba(30,50,120,.5) 0%, rgba(100,60,200,.08) 60%, transparent 80%);
+  top: 15%; right: 5%;
+  animation-duration: 26s;
+  animation-delay: -13s;
+  animation-direction: alternate-reverse;
+}
+@keyframes orb-drift {
+  0%   { transform: translate(0, 0)       scale(1);    }
+  30%  { transform: translate(5%, 8%)     scale(1.06); }
+  60%  { transform: translate(-3%, 12%)   scale(0.97); }
+  100% { transform: translate(8%, -6%)    scale(1.09); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-orb { animation: none; }
 }
 
 /* ── Shared ── */
@@ -426,7 +476,7 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
 .service-card:hover .sc-icon { transform: scale(1.15); }
 
 /* ── Gallery ── */
-.section--dark { background: rgba(0,0,0,.25); }
+.section--dark { background: rgba(0,0,0,.18); }
 .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .gallery img {
   width: 100%;
@@ -653,7 +703,7 @@ a.service-card { text-decoration: none; color: var(--text); }
 a.service-card:hover { opacity: 1; }
 
 /* ── How It Works ── */
-.section--process { background: rgba(12, 24, 44, 0.8); }
+.section--process { background: rgba(6, 14, 26, 0.55); }
 .process-steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -834,7 +884,7 @@ a.service-card:hover { opacity: 1; }
 /* ── Secciones inline — override para dark theme consistente ── */
 
 /* Reviews */
-section#reviews { background: var(--navy2) !important; }
+section#reviews { background: rgba(15,30,53,.82) !important; backdrop-filter: blur(4px); }
 section#reviews h2 { font-family: 'Cinzel', serif !important; }
 section#reviews > div > div:first-child > div:first-child { color: var(--gold) !important; }
 
@@ -852,7 +902,7 @@ section#pricing li { color: var(--muted) !important; }
 section#pricing li span { color: var(--text) !important; }
 
 /* About */
-section#about { background: var(--navy2) !important; }
+section#about { background: rgba(15,30,53,.82) !important; backdrop-filter: blur(4px); }
 section#about h2 { font-family: 'Cinzel', serif !important; color: var(--text) !important; }
 section#about p { color: var(--muted) !important; }
 section#about strong { color: var(--text) !important; }
