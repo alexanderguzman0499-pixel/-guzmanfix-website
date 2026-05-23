@@ -107,6 +107,42 @@ mobileNav?.querySelectorAll('a').forEach(a => {
   startAuto();
 })();
 
+/* ── FAQ Accordion ── */
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ── Animated counters ── */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.count);
+  const isInt = Number.isInteger(target);
+  const duration = 1800;
+  const start = performance.now();
+  const tick = now => {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = target * ease;
+    el.textContent = isInt ? Math.floor(val) : val.toFixed(1);
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = isInt ? target : target.toFixed(1);
+  };
+  requestAnimationFrame(tick);
+}
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.6 });
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
 /* ── Year ── */
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
