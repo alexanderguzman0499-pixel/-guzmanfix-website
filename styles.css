@@ -492,3 +492,36 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
   .hero__badges { grid-template-columns: 1fr; }
   .header { flex-direction: column; align-items: flex-start; }
 }
+/* ── Secciones inline — override para dark theme consistente ── */
+
+/* Reviews */
+section#reviews { background: var(--navy2) !important; }
+section#reviews h2 { font-family: 'Cinzel', serif !important; }
+section#reviews > div > div:first-child > div:first-child { color: var(--gold) !important; }
+
+/* Pricing */
+section#pricing { background: rgba(0,0,0,.25) !important; }
+section#pricing h2 { font-family: 'Cinzel', serif !important; color: var(--text) !important; }
+section#pricing p { color: var(--muted) !important; }
+section#pricing > div > div:nth-child(2) > div {
+  background: rgba(27,42,74,.6) !important;
+  border-color: rgba(201,168,76,.25) !important;
+  color: var(--text) !important;
+}
+section#pricing h3 { color: var(--gold) !important; }
+section#pricing li { color: var(--muted) !important; }
+section#pricing li span { color: var(--text) !important; }
+
+/* About */
+section#about { background: var(--navy2) !important; }
+section#about h2 { font-family: 'Cinzel', serif !important; color: var(--text) !important; }
+section#about p { color: var(--muted) !important; }
+section#about strong { color: var(--text) !important; }
+section#about > div > div:first-child > div:nth-child(4) > div {
+  background: rgba(255,255,255,.05) !important;
+  color: var(--text) !important;
+}
+
+/* Areas */
+section#areas { background: var(--navy3) !important; }
+section#areas h2 { font-family: 'Cinzel', serif !important; }
