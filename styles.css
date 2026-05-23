@@ -134,13 +134,16 @@ a:hover { opacity: .88; }
 
 .brand { display: flex; align-items: center; gap: 14px; }
 .brand__logo {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 2px solid var(--gold);
-  object-fit: cover;
-  box-shadow: 0 0 16px rgba(201,168,76,.25);
+  height: 58px;
+  width: auto;
+  max-width: 160px;
+  border-radius: 8px;
+  border: 1px solid rgba(201,168,76,.3);
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(201,168,76,.3));
+  transition: filter .3s ease;
 }
+.brand__logo:hover { filter: drop-shadow(0 0 18px rgba(201,168,76,.55)); }
 .brand__name {
   display: block;
   font-family: 'Cinzel', serif;
@@ -506,7 +509,7 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
   flex-wrap: wrap;
 }
 .footer__brand { display: flex; align-items: center; gap: 12px; }
-.footer__logo { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--gold); }
+.footer__logo { height: 44px; width: auto; max-width: 120px; border-radius: 6px; border: 1px solid rgba(201,168,76,.25); object-fit: contain; }
 .footer__links { display: flex; gap: 18px; color: var(--muted); font-size: .9rem; }
 .footer__links a:hover { color: var(--gold); opacity: 1; }
 .footer__copy { opacity: .6; font-size: .88rem; }
