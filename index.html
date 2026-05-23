@@ -13,13 +13,79 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
  <meta name="google-site-verification" content="WwNLj1MY8WCsMPuCAjUsWyabCFuhTvfjFT7hXhpWNhU" />
  <link rel="canonical" href="https://guzmanfix.com/" />
-  <title>Guzman Reliable Services LLC</title>
-  <meta name="description" content="Maintenance, repairs, apartment turns, flooring, drywall, plumbing, electrical. Guzman Reliable Services LLC." />
+  <title>Guzman Reliable Services LLC — Tampa Bay Handyman</title>
+  <meta name="description" content="Professional handyman in Clearwater & Tampa Bay. Maintenance, repairs, flooring, drywall, plumbing, electrical, apartment turns. Free estimates." />
+
+  <!-- Open Graph / Social sharing -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://guzmanfix.com/" />
+  <meta property="og:title"       content="Guzman Reliable Services LLC — Tampa Bay Handyman" />
+  <meta property="og:description" content="Professional maintenance, repairs, flooring, drywall, plumbing & electrical. Serving Clearwater, St. Pete & all of Tampa Bay. Free estimates." />
+  <meta property="og:image"       content="https://guzmanfix.com/assets/logo-transparent.png" />
+  <meta name="twitter:card"       content="summary_large_image" />
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Guzman Reliable Services LLC",
+    "url": "https://guzmanfix.com",
+    "telephone": "+17274795969",
+    "email": "info@guzmanfix.com",
+    "description": "Professional handyman services in Clearwater and the Tampa Bay area. Maintenance, repairs, flooring, drywall, plumbing, electrical, and apartment turns.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Clearwater",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 27.9659,
+      "longitude": -82.8087
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    ],
+    "priceRange": "$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "7"
+    },
+    "sameAs": [
+      "https://www.facebook.com/GuzmanReliableServices",
+      "https://www.instagram.com/guzmanreliableservices"
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
   <script src="app.js" defer></script>
 </head>
 
 <body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Splash screen -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <div class="splash__inner">
+      <img src="assets/logo-transparent.png" alt="" class="splash__logo" />
+      <div class="splash__name">Guzman Reliable Services</div>
+      <div class="splash__tag">Tampa Bay's Trusted Handyman</div>
+    </div>
+  </div>
+
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <!-- Animated background -->
   <div class="bg-aura" aria-hidden="true">
     <div class="bg-orb bg-orb--1"></div>
@@ -792,6 +858,25 @@
 </a>
 <!-- Scroll to top -->
 <button id="scrollTop" aria-label="Back to top">↑</button>
+
+<!-- Exit intent popup -->
+<div class="exit-popup" id="exitPopup" role="dialog" aria-modal="true" aria-label="Before you go">
+  <div class="exit-popup__box">
+    <button class="exit-popup__close" id="exitClose" aria-label="Close">✕</button>
+    <div class="exit-popup__icon">👋</div>
+    <h3>Wait — get a free estimate first!</h3>
+    <p>Leave your number and we'll call you back within 24 hours. No commitment, no pressure.</p>
+    <form class="exit-popup__form" name="exit-callback" method="POST" data-netlify="true" action="/thanks.html">
+      <input type="hidden" name="form-name" value="exit-callback" />
+      <input type="tel" name="phone" placeholder="Your phone number" required />
+      <button type="submit">Call me back — it's free</button>
+    </form>
+    <div class="exit-popup__trust">🔒 We never spam. Your info stays private.</div>
+  </div>
+</div>
+
+<!-- Floating estimate CTA (desktop, appears when form is off-screen) -->
+<a href="#estimate" class="float-estimate" id="floatEstimate">Get Free Estimate ✦</a>
 
 <!-- Lightbox -->
 <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">

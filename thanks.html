@@ -3,40 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051795712"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18051795712');
-</script>
-  <title>Thank you — Guzman Reliable Services LLC</title>
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051795712"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18051795712');
+    gtag('event', 'conversion', { 'send_to': 'AW-18051795712/ysqKCKCthLIcEICW4p9D' });
+  </script>
+  <title>Thank You — Guzman Reliable Services LLC</title>
+  <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .ty-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      animation: fadeUp .6s ease both;
+    }
+    .ty-icon { font-size: 4.5rem; margin-bottom: 24px; }
+    .ty-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .ty-page p { color: var(--muted); font-size: 1.02rem; max-width: 500px; line-height: 1.75; margin-bottom: 14px; }
+    .ty-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+  </style>
 </head>
 <body>
-  <main class="section">
-    <div class="container">
-      <div class="card card--wide">
-        <h2>Thanks! We got your request.</h2>
-        <p class="muted">We’ll contact you as soon as possible.</p>
+  <div class="bg-aura" aria-hidden="true">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+  </div>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-          <a class="btn btn--primary" href="index.html#home">Back to home</a>
-<!-- Google Ads Conversion -->
-<script>
-  gtag('event', 'conversion', {
-    'send_to': 'AW-18051795712/ysqKCKCthLIcEICW4p9D'
-  });
-</script>
-          <a class="btn btn--ghost" href="index.html#services">View services</a>
-        </div>
-
-        <p class="fineprint" style="margin-top:14px;">
-          If this is urgent, please call or WhatsApp us.
-        </p>
-      </div>
+  <div class="ty-page">
+    <div class="ty-icon">✅</div>
+    <h1 class="ty-title">We got your message!</h1>
+    <p>Thank you for reaching out to <strong style="color:var(--text)">Guzman Reliable Services LLC</strong>. We'll review your request and get back to you within <strong style="color:var(--gold)">24 hours</strong>.</p>
+    <p>Need help sooner? Reach us directly:<br />
+      <a href="tel:+17274795969" style="color:var(--gold);font-weight:700;">(727) 479-5969</a>
+    </p>
+    <div class="ty-actions">
+      <a href="/" class="btn--hero-primary">← Back to Home</a>
+      <a href="https://wa.me/17274795969?text=Hi%2C%20I%20just%20submitted%20an%20estimate%20request" target="_blank" rel="noopener noreferrer" class="btn--hero-secondary">💬 WhatsApp us</a>
     </div>
-  </main>
+  </div>
 </body>
 </html>

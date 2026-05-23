@@ -147,6 +147,64 @@ document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+/* ── Scroll progress bar ── */
+const progressBar = document.getElementById('scrollProgress');
+if (progressBar) {
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    progressBar.style.width = Math.min(100, pct) + '%';
+  }, { passive: true });
+}
+
+/* ── Splash screen ── */
+(function () {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  setTimeout(() => {
+    splash.classList.add('hidden');
+    setTimeout(() => splash.remove(), 600);
+  }, 1700);
+})();
+
+/* ── Cursor glow ── */
+(function () {
+  const glow = document.getElementById('cursorGlow');
+  if (!glow || window.matchMedia('(hover: none)').matches) return;
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  }, { passive: true });
+})();
+
+/* ── Exit intent popup ── */
+(function () {
+  const popup = document.getElementById('exitPopup');
+  if (!popup) return;
+  let shown = sessionStorage.getItem('exitShown');
+
+  document.addEventListener('mouseleave', e => {
+    if (e.clientY < 60 && !shown) {
+      shown = true;
+      sessionStorage.setItem('exitShown', '1');
+      popup.classList.add('active');
+    }
+  });
+
+  const close = () => popup.classList.remove('active');
+  document.getElementById('exitClose')?.addEventListener('click', close);
+  popup.addEventListener('click', e => { if (e.target === popup) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  popup.querySelector('form')?.addEventListener('submit', () => setTimeout(close, 600));
+})();
+
+/* ── Floating estimate CTA ── */
+(function () {
+  const btn  = document.getElementById('floatEstimate');
+  const form = document.getElementById('estimate');
+  if (!btn || !form) return;
+  new IntersectionObserver(([e]) => btn.classList.toggle('visible', !e.isIntersecting)).observe(form);
+})();
+
 /* ── Hero rotating word ── */
 (function () {
   const el = document.getElementById('heroRotate');
