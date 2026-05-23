@@ -79,7 +79,7 @@
   <main class="hero">
     <section class="hero__left">
       <div class="hero__pill">Tampa Bay's Trusted Handyman</div>
-      <h1>Reliable maintenance & repairs—done right.</h1>
+      <h1>Reliable <span id="heroRotate" class="hero__rotate">maintenance</span> & repairs—done right.</h1>
       <p>
         Apartment turns, punch lists, preventative maintenance, and home repairs.
         Professional results—without the hassle.
@@ -305,6 +305,36 @@
       </div>
     </div>
   </section>
+<!-- Before / After -->
+<section class="section section--ba">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="section-badge">Results</div>
+      <h2>Before &amp; After</h2>
+      <p class="muted">Drag the handle to compare — real work, real results.</p>
+    </div>
+    <div class="ba-slider reveal" id="baSlider">
+      <div class="ba-before">
+        <img src="assets/Work3.jpg" alt="Before" />
+        <span class="ba-label ba-label--before">Before</span>
+      </div>
+      <div class="ba-after">
+        <img src="assets/Work4.jpg" alt="After" />
+        <span class="ba-label ba-label--after">After</span>
+      </div>
+      <div class="ba-handle" id="baHandle">
+        <div class="ba-handle__line"></div>
+        <div class="ba-handle__circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 3 12 9 6" style="transform:translateX(12px)"/></svg>
+        </div>
+        <div class="ba-handle__line"></div>
+      </div>
+    </div>
+    <p class="ba-hint muted">← Drag to compare →</p>
+    <p class="ba-swap-note muted" style="text-align:center;font-size:.82rem;margin-top:6px;opacity:.5;">Replace these images with your real before &amp; after photos in the HTML</p>
+  </div>
+</section>
+
 <!-- How It Works -->
 <section id="process" class="section section--process">
   <div class="container">
@@ -335,6 +365,14 @@
     </div>
   </div>
 </section>
+
+<!-- Wave: process → stats -->
+<div class="wave-divider wave-divider--dark-to-navy" aria-hidden="true">
+  <svg viewBox="0 0 1440 54" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,32 C240,54 480,10 720,32 C960,54 1200,10 1440,32 L1440,54 L0,54 Z" fill="#C9A84C" fill-opacity="0.07"/>
+    <path d="M0,40 C360,16 1080,60 1440,36 L1440,54 L0,54 Z" fill="rgba(10,22,40,0.6)"/>
+  </svg>
+</div>
 
 <!-- Stats Bar -->
 <section class="stats-bar">
@@ -415,6 +453,14 @@
     </div>
   </div>
 </section>
+<!-- Wave: reviews → guarantee -->
+<div class="wave-divider" aria-hidden="true" style="background:#1B2A4A;">
+  <svg viewBox="0 0 1440 54" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C480,54 960,0 1440,28 L1440,54 L0,54 Z" fill="rgba(12,24,44,0.95)"/>
+    <path d="M0,36 C360,12 1080,48 1440,24 L1440,54 L0,54 Z" fill="rgba(201,168,76,0.06)"/>
+  </svg>
+</div>
+
 <!-- Guarantee -->
 <section class="guarantee">
   <div class="container">
@@ -719,5 +765,25 @@
 </a>
 <!-- Scroll to top -->
 <button id="scrollTop" aria-label="Back to top">↑</button>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-btn--close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-btn lb-btn--prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <button class="lb-btn lb-btn--next" id="lbNext" aria-label="Next">&#8250;</button>
+  <img id="lightboxImg" src="" alt="Work photo enlarged" class="lb-img" />
+</div>
+
+<!-- Mobile CTA Bar -->
+<div class="mobile-cta-bar">
+  <a href="tel:+17274795969" class="mobile-cta-bar__btn mobile-cta-bar__btn--call">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    Call Now
+  </a>
+  <a href="https://wa.me/17274795969?text=Hello%20I%20need%20a%20quote" target="_blank" rel="noopener noreferrer" class="mobile-cta-bar__btn mobile-cta-bar__btn--wa">
+    <svg width="17" height="17" viewBox="0 0 32 32" fill="currentColor"><path d="M19.11 17.205c-.272-.136-1.606-.793-1.855-.883-.25-.09-.432-.136-.613.136-.18.272-.703.883-.863 1.064-.158.18-.317.203-.59.068-.272-.136-1.15-.424-2.19-1.352-.81-.722-1.356-1.615-1.515-1.887-.158-.272-.017-.42.12-.556.123-.122.272-.317.408-.476.136-.158.18-.272.272-.453.09-.18.045-.34-.023-.476-.068-.136-.613-1.48-.84-2.03-.22-.53-.445-.458-.613-.467l-.523-.01c-.18 0-.476.068-.726.34-.25.272-.953.93-.953 2.27 0 1.34.976 2.635 1.11 2.817.136.18 1.92 2.93 4.65 4.11.65.28 1.156.447 1.55.572.65.206 1.24.177 1.707.108.52-.078 1.606-.657 1.833-1.293.227-.636.227-1.18.158-1.293-.068-.113-.25-.18-.523-.317zM16.003 3C8.83 3 3 8.83 3 16.003c0 2.827.933 5.433 2.51 7.54L3 29l5.62-2.45a12.94 12.94 0 007.383 2.317C23.17 28.867 29 23.04 29 16.003 29 8.83 23.17 3 16.003 3z"/></svg>
+    WhatsApp
+  </a>
+</div>
 </body>
 </html>
