@@ -245,6 +245,20 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   slider.addEventListener('click', e => setPos(e.clientX));
 });
 
+/* ── Cookie consent ── */
+(function () {
+  const bar = document.getElementById('cookieBar');
+  if (!bar || localStorage.getItem('cookieChoice')) return;
+  setTimeout(() => bar.classList.add('visible'), 2200);
+  function dismiss(choice) {
+    localStorage.setItem('cookieChoice', choice);
+    bar.classList.remove('visible');
+    setTimeout(() => bar.remove(), 500);
+  }
+  document.getElementById('cookieAccept')?.addEventListener('click', () => dismiss('accepted'));
+  document.getElementById('cookieDecline')?.addEventListener('click', () => dismiss('declined'));
+})();
+
 /* ── Gallery Lightbox ── */
 (function () {
   const lb    = document.getElementById('lightbox');
