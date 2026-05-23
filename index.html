@@ -313,25 +313,45 @@
       <h2>Before &amp; After</h2>
       <p class="muted">Drag the handle to compare — real work, real results.</p>
     </div>
-    <div class="ba-slider reveal" id="baSlider">
-      <div class="ba-before">
-        <img src="assets/before.jpg" alt="Before" />
-        <span class="ba-label ba-label--before">Before</span>
-      </div>
-      <div class="ba-after">
-        <img src="assets/after.jpg" alt="After" />
-        <span class="ba-label ba-label--after">After</span>
-      </div>
-      <div class="ba-handle" id="baHandle">
-        <div class="ba-handle__line"></div>
-        <div class="ba-handle__circle">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 3 12 9 6" style="transform:translateX(12px)"/></svg>
+    <div class="ba-grid">
+      <!-- Pair 1 -->
+      <div class="ba-slider reveal" data-ba>
+        <div class="ba-before">
+          <img src="assets/before.jpg" alt="Before" />
+          <span class="ba-label ba-label--before">Before</span>
         </div>
-        <div class="ba-handle__line"></div>
+        <div class="ba-after">
+          <img src="assets/after.jpg" alt="After" />
+          <span class="ba-label ba-label--after">After</span>
+        </div>
+        <div class="ba-handle">
+          <div class="ba-handle__line"></div>
+          <div class="ba-handle__circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6-6 6-6"/><path d="M15 6l6 6-6 6"/></svg>
+          </div>
+          <div class="ba-handle__line"></div>
+        </div>
+      </div>
+      <!-- Pair 2 -->
+      <div class="ba-slider reveal reveal-delay-2" data-ba>
+        <div class="ba-before">
+          <img src="assets/before2.jpg" alt="Before" />
+          <span class="ba-label ba-label--before">Before</span>
+        </div>
+        <div class="ba-after">
+          <img src="assets/after2.jpg" alt="After" />
+          <span class="ba-label ba-label--after">After</span>
+        </div>
+        <div class="ba-handle">
+          <div class="ba-handle__line"></div>
+          <div class="ba-handle__circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6-6 6-6"/><path d="M15 6l6 6-6 6"/></svg>
+          </div>
+          <div class="ba-handle__line"></div>
+        </div>
       </div>
     </div>
     <p class="ba-hint muted">← Drag to compare →</p>
-    <p class="ba-swap-note muted" style="text-align:center;font-size:.82rem;margin-top:6px;opacity:.5;">Replace these images with your real before &amp; after photos in the HTML</p>
   </div>
 </section>
 

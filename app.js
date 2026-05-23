@@ -163,22 +163,20 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   }, 2600);
 })();
 
-/* ── Before / After Slider ── */
-(function () {
-  const slider = document.getElementById('baSlider');
-  if (!slider) return;
+/* ── Before / After Sliders (supports multiple) ── */
+document.querySelectorAll('[data-ba]').forEach(slider => {
   const after  = slider.querySelector('.ba-after');
-  const handle = document.getElementById('baHandle');
+  const handle = slider.querySelector('.ba-handle');
   let dragging = false;
 
   function setPos(clientX) {
     const rect = slider.getBoundingClientRect();
     const pct  = Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100));
-    after.style.clipPath   = `inset(0 ${100 - pct}% 0 0)`;
-    handle.style.left      = pct + '%';
+    after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    handle.style.left    = pct + '%';
   }
 
-  handle.addEventListener('mousedown',  () => { dragging = true; });
+  handle.addEventListener('mousedown',  e => { dragging = true; e.preventDefault(); });
   window.addEventListener('mouseup',    () => { dragging = false; });
   window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX); });
 
@@ -187,7 +185,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
 
   slider.addEventListener('click', e => setPos(e.clientX));
-})();
+});
 
 /* ── Gallery Lightbox ── */
 (function () {
