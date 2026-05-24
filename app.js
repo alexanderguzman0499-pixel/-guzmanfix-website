@@ -210,7 +210,7 @@ if (progressBar) {
   const el = document.getElementById('heroRotate');
   if (!el) return;
   const words = ['flooring', 'plumbing', 'drywall', 'electrical', 'maintenance'];
-  let i = 0;
+  let i = words.length - 1;
   setInterval(() => {
     el.classList.add('fade-out');
     setTimeout(() => {
