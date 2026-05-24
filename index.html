@@ -998,7 +998,7 @@
     <p>Leave your number and we'll call you back within 24 hours. No commitment, no pressure.</p>
     <form class="exit-popup__form" name="exit-callback" method="POST" data-netlify="true" action="/thanks.html">
       <input type="hidden" name="form-name" value="exit-callback" />
-      <input type="tel" name="phone" placeholder="Your phone number" required />
+      <input type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" aria-label="Your phone number" required />
       <button type="submit">Call me back — it's free</button>
     </form>
     <div class="exit-popup__trust">🔒 We never spam. Your info stays private.</div>
