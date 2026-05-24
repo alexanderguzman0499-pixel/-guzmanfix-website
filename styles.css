@@ -1790,6 +1790,19 @@ a.service-card:hover { opacity: 1; }
 .about__stat-lbl { color: var(--muted); font-size: .8rem; margin-top: 4px; }
 .about__contact { text-align: center; }
 .about__logo { max-width: 200px; width: 100%; margin-bottom: 24px; filter: drop-shadow(0 0 18px rgba(201,168,76,.25)); }
+.about__portrait {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 32px rgba(201,168,76,.3);
+  margin-bottom: 24px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .about__contact-card {
   background: rgba(255,255,255,.06);
   border: 1px solid var(--border);
