@@ -412,6 +412,7 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
 
 /* ── Sections ── */
 .section { padding: 72px 0; }
+@media (max-width: 768px) { .section { padding: 48px 0; } }
 .section__head { margin-bottom: 28px; }
 .section__head h2 {
   font-family: 'Cinzel', serif;
@@ -563,8 +564,6 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
   60%       { box-shadow: 0 0 0 9px rgba(239,68,68,0); }
 }
 
-.section { animation: fadeUp .6s ease both; }
-
 /* Scroll reveal (JS-free fallback) */
 @media (prefers-reduced-motion: no-preference) {
   .badge, .service-card, .gallery img, .card {
@@ -612,7 +611,10 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
   .footer__inner { flex-direction: column; align-items: flex-start; gap: 14px; }
 }
 @media (max-width: 480px) {
-  .hero__badges { grid-template-columns: 1fr; }
+  .hero__badges { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .badge { padding: 12px 8px; }
+  .badge__big { font-size: 1rem; }
+  .badge__small { font-size: .72rem; }
 }
 
 /* ── Scroll reveal ── */
@@ -970,6 +972,7 @@ a.service-card:hover { opacity: 1; }
   flex-shrink: 0;
 }
 @media (max-width: 700px) { .guarantee__inner { flex-direction: column; gap: 28px; } .guarantee__icon { font-size: 4rem; } }
+@media (max-width: 768px) { .guarantee { padding: 48px 0; } }
 
 /* ── FAQ ── */
 .section--faq { background: rgba(0,0,0,.2); }
@@ -1028,6 +1031,7 @@ a.service-card:hover { opacity: 1; }
   overflow: hidden;
   min-height: 680px;
 }
+@media (max-width: 768px) { .section--areas { padding: 56px 0; min-height: 500px; } }
 .areas__map-bg {
   position: absolute;
   inset: 0;
