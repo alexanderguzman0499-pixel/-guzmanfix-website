@@ -1868,3 +1868,103 @@ a.service-card:hover { opacity: 1; }
 .privacy-page a { color: var(--gold); }
 .privacy-back { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: .88rem; margin-bottom: 36px; transition: color .2s; }
 .privacy-back:hover { color: var(--gold); opacity: 1; }
+
+/* ── Interactive Price Quoter ── */
+.section--quoter { text-align: center; }
+.quoter {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 32px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.quoter__step-label {
+  font-family: 'Cinzel', serif;
+  font-size: .85rem;
+  letter-spacing: .08em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.quoter__hidden { display: none !important; }
+.quoter__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.quoter__grid--scope {
+  grid-template-columns: repeat(3, 1fr);
+}
+.quoter__card {
+  background: rgba(255,255,255,.05);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 14px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, transform .15s;
+  text-align: center;
+}
+.quoter__card:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,.08);
+  transform: translateY(-2px);
+}
+.quoter__card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.quoter__card-icon { font-size: 2rem; margin-bottom: 10px; }
+.quoter__card-name { font-weight: 700; font-size: .95rem; color: var(--text); margin-bottom: 4px; }
+.quoter__card-desc { font-size: .78rem; color: var(--muted); line-height: 1.4; }
+.quoter__card--scope .quoter__card-icon { font-size: 1.6rem; }
+.quoter__back {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: .85rem;
+  cursor: pointer;
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: color .2s;
+}
+.quoter__back:hover { color: var(--gold); }
+.quoter__result { padding: 12px 0 24px; }
+.quoter__service-name {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.quoter__range {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.quoter__disclaimer {
+  color: var(--muted);
+  font-size: .82rem;
+  max-width: 480px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+.quoter__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .quoter { padding: 28px 18px; }
+  .quoter__grid--scope { grid-template-columns: 1fr; }
+  .quoter__grid { grid-template-columns: repeat(2, 1fr); }
+}

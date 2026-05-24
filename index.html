@@ -864,6 +864,46 @@
   </div>
 </section>
 
+<!-- Interactive Price Quoter -->
+<section id="quoter" class="section section--quoter">
+  <div class="container">
+    <div class="section-badge reveal">Estimate Tool</div>
+    <h2 class="reveal">Instant Price Estimate</h2>
+    <p class="muted reveal" style="max-width:560px;margin:0 auto 40px;">Selecciona el servicio y el alcance para ver un rango de precios basado en las tarifas actuales del mercado de Tampa Bay 2026.</p>
+
+    <div class="quoter reveal" id="quoter-widget">
+
+      <!-- Step 1: Service -->
+      <div class="quoter__step" id="qStep1">
+        <p class="quoter__step-label">Paso 1 — ¿Qué servicio necesitas?</p>
+        <div class="quoter__grid" id="qServices"></div>
+      </div>
+
+      <!-- Step 2: Scope -->
+      <div class="quoter__step quoter__hidden" id="qStep2">
+        <p class="quoter__step-label">Paso 2 — ¿Cuál es el alcance del trabajo?</p>
+        <div class="quoter__grid quoter__grid--scope" id="qScopes"></div>
+        <button class="quoter__back" id="qBack1">← Cambiar servicio</button>
+      </div>
+
+      <!-- Step 3: Result -->
+      <div class="quoter__step quoter__hidden" id="qStep3">
+        <div class="quoter__result">
+          <div class="quoter__service-name" id="qServiceName"></div>
+          <div class="quoter__range" id="qRange"></div>
+          <p class="quoter__disclaimer">Estimado basado en tarifas del mercado de Tampa Bay 2026. El precio final puede variar según materiales, acceso y condición del área.</p>
+          <div class="quoter__actions">
+            <a href="tel:+17274795969" class="btn--hero-primary">📞 Llamar para cotización exacta</a>
+            <a href="#estimate" class="btn--hero-secondary">Solicitar estimado gratis →</a>
+          </div>
+        </div>
+        <button class="quoter__back" id="qBack2">← Cambiar alcance</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- Guarantee -->
 <section class="guarantee">
   <div class="container">
