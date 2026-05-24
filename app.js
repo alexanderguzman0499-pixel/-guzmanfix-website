@@ -1,3 +1,7 @@
+/* ── Global error boundary ── */
+window.onerror = (msg, src, line) => { console.error(`[GRS] JS error: ${msg} (${src}:${line})`); };
+window.addEventListener('unhandledrejection', e => { console.error('[GRS] Unhandled promise:', e.reason); });
+
 /* ── Header shrink on scroll ── */
 const header = document.querySelector('.header');
 window.addEventListener('scroll', () => {
