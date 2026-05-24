@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Privacy Policy — Guzman Reliable Services LLC</title>
   <meta name="description" content="Privacy policy for Guzman Reliable Services LLC. Learn how we collect, use, and protect your personal information." />
+  <link rel="canonical" href="https://guzmanfix.com/privacy.html" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051795712"></script>
   <script>
@@ -16,10 +19,10 @@
     gtag('js', new Date());
     gtag('config', 'AW-18051795712');
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" /></noscript>
   <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
   <style>
     .privacy-page { max-width: 780px; margin: 0 auto; padding: 60px 24px 80px; }
     .privacy-page h1 { font-family: 'Cinzel', serif; font-size: clamp(1.6rem,3vw,2.2rem); color: var(--gold); margin-bottom: 8px; }
@@ -42,13 +45,16 @@
 
   <header class="header">
     <div class="brand">
-      <img src="assets/logo-transparent.png" alt="Logo" class="brand__logo" />
+      <img src="assets/logo-transparent.png" alt="Guzman Reliable Services LLC logo" class="brand__logo" />
       <div class="brand__text">
         <strong class="brand__name">Guzman Reliable Services LLC</strong>
         <span class="brand__tagline">Maintenance • Repairs • Reliability</span>
       </div>
     </div>
-    <nav class="nav">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="mobileNav">
       <a href="/">Home</a>
       <a href="/#services">Services</a>
       <a class="btn primary" href="/#estimate">Get Estimate</a>
