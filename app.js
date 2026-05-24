@@ -2,6 +2,80 @@
 window.onerror = (msg, src, line) => { console.error(`[GRS] JS error: ${msg} (${src}:${line})`); };
 window.addEventListener('unhandledrejection', e => { console.error('[GRS] Unhandled promise:', e.reason); });
 
+/* ── Language system ── */
+const LANG_KEY = 'grs-lang';
+let currentLang = localStorage.getItem(LANG_KEY) || 'en';
+
+const T = {
+  en: {
+    'nav.services':   'Services',
+    'nav.work':       'Work',
+    'nav.pricing':    'Pricing',
+    'nav.estimate':   'Estimate',
+    'nav.emergency':  'Emergency',
+    'nav.getEstimate':'Get Estimate',
+    'hero.pill':      "Tampa Bay's Trusted Handyman",
+    'hero.desc':      'Apartment turns, punch lists, preventative maintenance, and home repairs. Professional results—without the hassle.',
+    'hero.cta1':      'Get Free Estimate',
+    'form.h2':        'Get a quick estimate',
+    'form.desc':      "Tell us what you need and we'll reply with next steps.",
+    'form.submit':    'Get My Free Estimate →',
+    'quoter.badge':   'Estimate Tool',
+    'quoter.h2':      'Instant Price Estimate',
+    'quoter.desc':    'Select your service and scope to get a price range based on current 2026 Tampa Bay market rates.',
+    'quoter.step1':   'Step 1 — What service do you need?',
+    'quoter.step2':   'Step 2 — What is the scope of the work?',
+    'quoter.back1':   '← Change service',
+    'quoter.back2':   '← Change scope',
+    'quoter.disclaimer': 'Estimate based on 2026 Tampa Bay market rates. Final price may vary based on materials, access, and site conditions.',
+    'quoter.callBtn': '📞 Call for Exact Quote',
+    'quoter.formBtn': 'Request Free Estimate →',
+  },
+  es: {
+    'nav.services':   'Servicios',
+    'nav.work':       'Trabajos',
+    'nav.pricing':    'Precios',
+    'nav.estimate':   'Estimado',
+    'nav.emergency':  'Emergencia',
+    'nav.getEstimate':'Cotizar Gratis',
+    'hero.pill':      'El Handyman de Confianza en Tampa Bay',
+    'hero.desc':      'Apartment turns, punch lists, mantenimiento preventivo y reparaciones del hogar. Resultados profesionales—sin complicaciones.',
+    'hero.cta1':      'Obtener Estimado Gratis',
+    'form.h2':        'Obtén un estimado rápido',
+    'form.desc':      'Cuéntanos qué necesitas y te respondemos con los próximos pasos.',
+    'form.submit':    'Enviar Mi Solicitud →',
+    'quoter.badge':   'Herramienta de Estimados',
+    'quoter.h2':      'Estimado de Precio Instantáneo',
+    'quoter.desc':    'Selecciona el servicio y el alcance para ver un rango de precios basado en las tarifas actuales del mercado de Tampa Bay 2026.',
+    'quoter.step1':   'Paso 1 — ¿Qué servicio necesitas?',
+    'quoter.step2':   'Paso 2 — ¿Cuál es el alcance del trabajo?',
+    'quoter.back1':   '← Cambiar servicio',
+    'quoter.back2':   '← Cambiar alcance',
+    'quoter.disclaimer': 'Estimado basado en tarifas del mercado de Tampa Bay 2026. El precio final puede variar según materiales, acceso y condición del área.',
+    'quoter.callBtn': '📞 Llamar para cotización exacta',
+    'quoter.formBtn': 'Solicitar estimado gratis →',
+  }
+};
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem(LANG_KEY, lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (T[lang][key]) el.textContent = T[lang][key];
+  });
+  const btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = lang === 'en' ? 'ES' : 'EN';
+  if (typeof rebuildQuoter === 'function') rebuildQuoter();
+}
+
+document.getElementById('langToggle')?.addEventListener('click', () => {
+  applyLang(currentLang === 'en' ? 'es' : 'en');
+});
+
+if (currentLang === 'es') applyLang('es');
+
 /* ── Header shrink on scroll ── */
 const header = document.querySelector('.header');
 window.addEventListener('scroll', () => {
@@ -219,7 +293,11 @@ if (progressBar) {
 (function () {
   const el = document.getElementById('heroRotate');
   if (!el) return;
-  const words = ['flooring', 'plumbing', 'drywall', 'electrical', 'maintenance'];
+  const wordMap = {
+    en: ['flooring', 'plumbing', 'drywall', 'electrical', 'maintenance'],
+    es: ['pisos', 'plomería', 'drywall', 'eléctrico', 'mantenimiento']
+  };
+  const words = wordMap[currentLang] || wordMap.en;
   let i = words.length - 1;
   setInterval(() => {
     el.classList.add('fade-out');
@@ -315,72 +393,124 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   const widget = document.getElementById('quoter-widget');
   if (!widget) return;
 
-  const services = [
-    {
-      icon: '🪵', name: 'Pisos', desc: 'LVP, laminado, porcelana',
-      scopes: [
-        { icon: '📐', label: 'Pequeño', sub: 'Hasta 200 sq ft', range: '$400 – $800' },
-        { icon: '🏠', label: 'Mediano', sub: '200 – 500 sq ft', range: '$800 – $1,800' },
-        { icon: '🏢', label: 'Grande',  sub: '500+ sq ft',       range: '$1,800 – $4,000' }
-      ]
-    },
-    {
-      icon: '🧱', name: 'Drywall', desc: 'Reparación, parches, textura',
-      scopes: [
-        { icon: '🔧', label: 'Pequeño', sub: 'Parches / hoyos',        range: '$150 – $350' },
-        { icon: '🏠', label: 'Mediano', sub: 'Sección o daño de agua', range: '$350 – $900' },
-        { icon: '🏢', label: 'Grande',  sub: 'Cuarto completo',        range: '$900 – $2,200' }
-      ]
-    },
-    {
-      icon: '🚿', name: 'Plomería', desc: 'Grifos, inodoros, tuberías',
-      scopes: [
-        { icon: '🔧', label: 'Pequeño', sub: 'Reparación simple',       range: '$150 – $350' },
-        { icon: '🏠', label: 'Mediano', sub: 'Reemplazo de accesorios', range: '$350 – $700' },
-        { icon: '🏢', label: 'Grande',  sub: 'Múltiples accesorios',    range: '$700 – $1,600' }
-      ]
-    },
-    {
-      icon: '⚡', name: 'Eléctrico', desc: 'Tomas, abanicos, lámparas',
-      scopes: [
-        { icon: '🔌', label: 'Pequeño', sub: '1 – 2 salidas o switches', range: '$100 – $300' },
-        { icon: '💡', label: 'Mediano', sub: 'Abanico o varias lámparas', range: '$300 – $700' },
-        { icon: '🏢', label: 'Grande',  sub: 'Panel o circuitos múltiples', range: '$700 – $1,800' }
-      ]
-    },
-    {
-      icon: '🎨', name: 'Pintura', desc: 'Interior de habitaciones',
-      scopes: [
-        { icon: '🖌️', label: 'Pequeño', sub: '1 habitación',       range: '$350 – $700' },
-        { icon: '🏠', label: 'Mediano', sub: '2 – 3 habitaciones',  range: '$700 – $1,800' },
-        { icon: '🏢', label: 'Grande',  sub: 'Casa completa',       range: '$1,800 – $5,000' }
-      ]
-    },
-    {
-      icon: '🏗️', name: 'Apartment Turn', desc: 'Make-ready, punch list',
-      scopes: [
-        { icon: '🛏️', label: 'Pequeño', sub: 'Estudio / 1 cuarto', range: '$500 – $1,000' },
-        { icon: '🏠', label: 'Mediano', sub: '2 cuartos',           range: '$1,000 – $2,000' },
-        { icon: '🏢', label: 'Grande',  sub: '3+ cuartos o rehab', range: '$2,000 – $5,000' }
-      ]
-    },
-    {
-      icon: '🚪', name: 'Puertas', desc: 'Instalación y herrajes',
-      scopes: [
-        { icon: '🔑', label: 'Pequeño', sub: 'Cerradura / ajuste',      range: '$100 – $250' },
-        { icon: '🚪', label: 'Mediano', sub: 'Instalación de 1 puerta', range: '$250 – $600' },
-        { icon: '🏢', label: 'Grande',  sub: 'Múltiples puertas',       range: '$600 – $1,500' }
-      ]
-    },
-    {
-      icon: '🔨', name: 'Mantenimiento', desc: 'Reparaciones generales',
-      scopes: [
-        { icon: '⏱️', label: 'Pequeño', sub: '1 – 2 horas',        range: '$100 – $250' },
-        { icon: '🕐', label: 'Mediano', sub: 'Medio día de trabajo', range: '$250 – $550' },
-        { icon: '📅', label: 'Grande',  sub: 'Día completo',        range: '$550 – $1,200' }
-      ]
-    }
-  ];
+  const allServices = {
+    en: [
+      { icon: '🪵', name: 'Flooring',       desc: 'LVP, laminate, tile, hardwood',
+        scopes: [
+          { icon: '📐', label: 'Small',  sub: 'Up to 200 sq ft', range: '$400 – $800' },
+          { icon: '🏠', label: 'Medium', sub: '200 – 500 sq ft', range: '$800 – $1,800' },
+          { icon: '🏢', label: 'Large',  sub: '500+ sq ft',      range: '$1,800 – $4,000' }
+        ]
+      },
+      { icon: '🧱', name: 'Drywall',        desc: 'Repair, patches, texture',
+        scopes: [
+          { icon: '🔧', label: 'Small',  sub: 'Patches / small holes',   range: '$150 – $350' },
+          { icon: '🏠', label: 'Medium', sub: 'Section or water damage', range: '$350 – $900' },
+          { icon: '🏢', label: 'Large',  sub: 'Full room or multiple',   range: '$900 – $2,200' }
+        ]
+      },
+      { icon: '🚿', name: 'Plumbing',       desc: 'Faucets, toilets, pipes',
+        scopes: [
+          { icon: '🔧', label: 'Small',  sub: 'Simple repair',         range: '$150 – $350' },
+          { icon: '🏠', label: 'Medium', sub: 'Fixture replacement',   range: '$350 – $700' },
+          { icon: '🏢', label: 'Large',  sub: 'Multiple fixtures',     range: '$700 – $1,600' }
+        ]
+      },
+      { icon: '⚡', name: 'Electrical',     desc: 'Outlets, fans, fixtures',
+        scopes: [
+          { icon: '🔌', label: 'Small',  sub: '1 – 2 outlets or switches',    range: '$100 – $300' },
+          { icon: '💡', label: 'Medium', sub: 'Fan or multiple light fixtures', range: '$300 – $700' },
+          { icon: '🏢', label: 'Large',  sub: 'Panel or multiple circuits',    range: '$700 – $1,800' }
+        ]
+      },
+      { icon: '🎨', name: 'Painting',       desc: 'Interior rooms',
+        scopes: [
+          { icon: '🖌️', label: 'Small',  sub: '1 room',        range: '$350 – $700' },
+          { icon: '🏠', label: 'Medium', sub: '2 – 3 rooms',   range: '$700 – $1,800' },
+          { icon: '🏢', label: 'Large',  sub: 'Full interior', range: '$1,800 – $5,000' }
+        ]
+      },
+      { icon: '🏗️', name: 'Apartment Turn', desc: 'Make-ready, punch list',
+        scopes: [
+          { icon: '🛏️', label: 'Small',  sub: 'Studio / 1 bedroom', range: '$500 – $1,000' },
+          { icon: '🏠', label: 'Medium', sub: '2 bedrooms',          range: '$1,000 – $2,000' },
+          { icon: '🏢', label: 'Large',  sub: '3+ beds or rehab',    range: '$2,000 – $5,000' }
+        ]
+      },
+      { icon: '🚪', name: 'Doors',          desc: 'Installation & hardware',
+        scopes: [
+          { icon: '🔑', label: 'Small',  sub: 'Lock / adjustment',   range: '$100 – $250' },
+          { icon: '🚪', label: 'Medium', sub: 'Single door install', range: '$250 – $600' },
+          { icon: '🏢', label: 'Large',  sub: 'Multiple doors',      range: '$600 – $1,500' }
+        ]
+      },
+      { icon: '🔨', name: 'Maintenance',    desc: 'General repairs',
+        scopes: [
+          { icon: '⏱️', label: 'Small',  sub: '1 – 2 hour tasks',  range: '$100 – $250' },
+          { icon: '🕐', label: 'Medium', sub: 'Half-day work',      range: '$250 – $550' },
+          { icon: '📅', label: 'Large',  sub: 'Full-day project',   range: '$550 – $1,200' }
+        ]
+      }
+    ],
+    es: [
+      { icon: '🪵', name: 'Pisos',          desc: 'LVP, laminado, porcelana',
+        scopes: [
+          { icon: '📐', label: 'Pequeño', sub: 'Hasta 200 sq ft', range: '$400 – $800' },
+          { icon: '🏠', label: 'Mediano', sub: '200 – 500 sq ft', range: '$800 – $1,800' },
+          { icon: '🏢', label: 'Grande',  sub: '500+ sq ft',      range: '$1,800 – $4,000' }
+        ]
+      },
+      { icon: '🧱', name: 'Drywall',        desc: 'Reparación, parches, textura',
+        scopes: [
+          { icon: '🔧', label: 'Pequeño', sub: 'Parches / hoyos',        range: '$150 – $350' },
+          { icon: '🏠', label: 'Mediano', sub: 'Sección o daño de agua', range: '$350 – $900' },
+          { icon: '🏢', label: 'Grande',  sub: 'Cuarto completo',        range: '$900 – $2,200' }
+        ]
+      },
+      { icon: '🚿', name: 'Plomería',       desc: 'Grifos, inodoros, tuberías',
+        scopes: [
+          { icon: '🔧', label: 'Pequeño', sub: 'Reparación simple',       range: '$150 – $350' },
+          { icon: '🏠', label: 'Mediano', sub: 'Reemplazo de accesorios', range: '$350 – $700' },
+          { icon: '🏢', label: 'Grande',  sub: 'Múltiples accesorios',    range: '$700 – $1,600' }
+        ]
+      },
+      { icon: '⚡', name: 'Eléctrico',      desc: 'Tomas, abanicos, lámparas',
+        scopes: [
+          { icon: '🔌', label: 'Pequeño', sub: '1 – 2 salidas o switches',    range: '$100 – $300' },
+          { icon: '💡', label: 'Mediano', sub: 'Abanico o varias lámparas',   range: '$300 – $700' },
+          { icon: '🏢', label: 'Grande',  sub: 'Panel o circuitos múltiples', range: '$700 – $1,800' }
+        ]
+      },
+      { icon: '🎨', name: 'Pintura',        desc: 'Interior de habitaciones',
+        scopes: [
+          { icon: '🖌️', label: 'Pequeño', sub: '1 habitación',      range: '$350 – $700' },
+          { icon: '🏠', label: 'Mediano', sub: '2 – 3 habitaciones', range: '$700 – $1,800' },
+          { icon: '🏢', label: 'Grande',  sub: 'Casa completa',      range: '$1,800 – $5,000' }
+        ]
+      },
+      { icon: '🏗️', name: 'Apartment Turn', desc: 'Make-ready, punch list',
+        scopes: [
+          { icon: '🛏️', label: 'Pequeño', sub: 'Estudio / 1 cuarto', range: '$500 – $1,000' },
+          { icon: '🏠', label: 'Mediano', sub: '2 cuartos',           range: '$1,000 – $2,000' },
+          { icon: '🏢', label: 'Grande',  sub: '3+ cuartos o rehab', range: '$2,000 – $5,000' }
+        ]
+      },
+      { icon: '🚪', name: 'Puertas',        desc: 'Instalación y herrajes',
+        scopes: [
+          { icon: '🔑', label: 'Pequeño', sub: 'Cerradura / ajuste',      range: '$100 – $250' },
+          { icon: '🚪', label: 'Mediano', sub: 'Instalación de 1 puerta', range: '$250 – $600' },
+          { icon: '🏢', label: 'Grande',  sub: 'Múltiples puertas',       range: '$600 – $1,500' }
+        ]
+      },
+      { icon: '🔨', name: 'Mantenimiento',  desc: 'Reparaciones generales',
+        scopes: [
+          { icon: '⏱️', label: 'Pequeño', sub: '1 – 2 horas',        range: '$100 – $250' },
+          { icon: '🕐', label: 'Mediano', sub: 'Medio día de trabajo', range: '$250 – $550' },
+          { icon: '📅', label: 'Grande',  sub: 'Día completo',        range: '$550 – $1,200' }
+        ]
+      }
+    ]
+  };
 
   const step1 = document.getElementById('qStep1');
   const step2 = document.getElementById('qStep2');
@@ -390,26 +520,27 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   const qRange    = document.getElementById('qRange');
   const qSvcName  = document.getElementById('qServiceName');
 
-  let selectedService = null;
+  let selectedIdx = null;
 
   function show(el)  { el.classList.remove('quoter__hidden'); }
   function hide(el)  { el.classList.add('quoter__hidden'); }
 
+  function getServices() { return allServices[currentLang] || allServices.en; }
+
   function buildServices() {
     svcGrid.innerHTML = '';
-    services.forEach((s, i) => {
+    getServices().forEach((s, i) => {
       const btn = document.createElement('button');
       btn.className = 'quoter__card';
       btn.setAttribute('aria-label', s.name);
       btn.innerHTML = `<div class="quoter__card-icon">${s.icon}</div><div class="quoter__card-name">${s.name}</div><div class="quoter__card-desc">${s.desc}</div>`;
-      btn.addEventListener('click', () => selectService(i));
+      btn.addEventListener('click', () => { selectedIdx = i; selectService(i); });
       svcGrid.appendChild(btn);
     });
   }
 
   function selectService(i) {
-    selectedService = services[i];
-    buildScopes(selectedService);
+    buildScopes(getServices()[i]);
     hide(step1);
     show(step2);
     step2.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -435,12 +566,13 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
     step3.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  document.getElementById('qBack1')?.addEventListener('click', () => {
-    hide(step2); show(step1);
-  });
-  document.getElementById('qBack2')?.addEventListener('click', () => {
-    hide(step3); show(step2);
-  });
+  document.getElementById('qBack1')?.addEventListener('click', () => { hide(step2); show(step1); });
+  document.getElementById('qBack2')?.addEventListener('click', () => { hide(step3); show(step2); });
+
+  window.rebuildQuoter = function () {
+    buildServices();
+    hide(step2); hide(step3); show(step1);
+  };
 
   buildServices();
 })();
