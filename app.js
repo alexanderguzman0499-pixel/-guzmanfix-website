@@ -4,7 +4,7 @@ window.addEventListener('unhandledrejection', e => { console.error('[GRS] Unhand
 
 /* ── Language system ── */
 const LANG_KEY = 'grs-lang';
-let currentLang = localStorage.getItem(LANG_KEY) || 'en';
+let currentLang = 'en';
 
 const T = {
   en: {
@@ -59,7 +59,6 @@ const T = {
 
 function applyLang(lang) {
   currentLang = lang;
-  localStorage.setItem(LANG_KEY, lang);
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
