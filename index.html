@@ -14,7 +14,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <meta name="theme-color" content="#060e1a" />
- <meta name="google-site-verification" content="WwNLj1MY8WCsMPuCAjUsWyabCFuhTvfjFT7hXhpWNhU" />
  <meta name="google-site-verification" content="vNkAnTumD1HxfOaKzosnD7VLB6cFuHe3D0W1QwcT9uY" />
  <link rel="canonical" href="https://guzmanfix.com/" />
   <title>Guzman Reliable Services LLC — Tampa Bay Handyman</title>
@@ -263,11 +262,12 @@
           name="estimate"
           method="POST"
           data-netlify="true"
+          netlify-honeypot="bot-field"
           action="/thanks.html"
           class="form"
         >
-          <!-- Netlify needs this hidden input -->
           <input type="hidden" name="form-name" value="estimate" />
+          <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
 
           <label class="field">
             <span>Name</span>
@@ -852,6 +852,7 @@
   <div class="areas__map-bg">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112934.75879789063!2d-82.8087800!3d27.96590!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2f2718046f451%3A0x4b1b2f79e30fc421!2sClearwater%2C%20FL!5e0!3m2!1sen!2sus!4v1716499200000!5m2!1sen!2sus"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
       allowfullscreen=""
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
@@ -997,8 +998,9 @@
     <div class="exit-popup__icon">👋</div>
     <h3>Wait — get a free estimate first!</h3>
     <p>Leave your number and we'll call you back within 24 hours. No commitment, no pressure.</p>
-    <form class="exit-popup__form" name="exit-callback" method="POST" data-netlify="true" action="/thanks.html">
+    <form class="exit-popup__form" name="exit-callback" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
       <input type="hidden" name="form-name" value="exit-callback" />
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
       <input type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" aria-label="Your phone number" required />
       <button type="submit">Call me back — it's free</button>
     </form>
