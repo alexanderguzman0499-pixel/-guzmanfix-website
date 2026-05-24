@@ -10,9 +10,6 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-18051795712');
-  </script>
-  <!-- Event snippet for Enviar formulario de clientes potenciales conversion page -->
-  <script>
     gtag('event', 'conversion', {'send_to': 'AW-18051795712/ysqKCKCthLIcEICW4p9D'});
   </script>
   <title>Thank You — Guzman Reliable Services LLC</title>
@@ -23,30 +20,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" />
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .ty-page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 24px;
-      animation: fadeUp .6s ease both;
-    }
-    .ty-icon { font-size: 4.5rem; margin-bottom: 24px; }
-    .ty-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .ty-page p { color: var(--muted); font-size: 1.02rem; max-width: 500px; line-height: 1.75; margin-bottom: 14px; }
-    .ty-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
-  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" /></noscript>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/app.js" defer></script>
 </head>
 <body>
   <div class="bg-aura" aria-hidden="true">
@@ -54,6 +31,24 @@
     <div class="bg-orb bg-orb--2"></div>
     <div class="bg-orb bg-orb--3"></div>
   </div>
+
+  <header class="header">
+    <div class="brand">
+      <img src="/assets/logo-transparent.png" alt="Guzman Reliable Services LLC logo" class="brand__logo" />
+      <div class="brand__text">
+        <strong class="brand__name">Guzman Reliable Services LLC</strong>
+        <span class="brand__tagline">Maintenance • Repairs • Reliability</span>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="mobileNav">
+      <a href="/">Home</a>
+      <a href="/#services">Services</a>
+      <a class="btn primary" href="/#estimate">Get Estimate</a>
+    </nav>
+  </header>
 
   <div class="ty-page">
     <div class="ty-icon">✅</div>
