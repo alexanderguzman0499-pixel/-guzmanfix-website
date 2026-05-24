@@ -457,7 +457,7 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
   font-weight: 600;
   font-size: .95rem;
   transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
-  cursor: default;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 13px;

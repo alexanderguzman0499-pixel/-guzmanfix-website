@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta name="theme-color" content="#060e1a" />
  <meta name="google-site-verification" content="WwNLj1MY8WCsMPuCAjUsWyabCFuhTvfjFT7hXhpWNhU" />
  <link rel="canonical" href="https://guzmanfix.com/" />
   <title>Guzman Reliable Services LLC — Tampa Bay Handyman</title>
@@ -186,6 +187,7 @@
     <a class="btn primary" href="#estimate">Get Estimate</a>
   </nav>
   </header>
+<main>
 <!-- Emergency banner -->
   <section id="emergency" class="emergency">
   <div class="container emergency__inner">
@@ -221,7 +223,7 @@
   </div>
 </section>
   <!-- Hero -->
-  <main class="hero">
+  <div class="hero">
     <section class="hero__left">
       <div class="hero__pill">Tampa Bay's Trusted Handyman</div>
       <h1>Reliable <span id="heroRotate" class="hero__rotate">maintenance</span> & repairs—done right.</h1>
@@ -268,12 +270,12 @@
 
           <label class="field">
             <span>Name</span>
-            <input name="name" type="text" placeholder="Your name" required />
+            <input name="name" type="text" placeholder="Your name" autocomplete="name" required />
           </label>
 
           <label class="field">
             <span>Phone</span>
-            <input name="phone" type="tel" placeholder="(XXX) XXX-XXXX" required />
+            <input name="phone" type="tel" placeholder="(XXX) XXX-XXXX" autocomplete="tel" required />
           </label>
 
           <fieldset class="fieldset">
@@ -338,7 +340,7 @@
         </form>
       </div>
     </section>
-  </main>
+  </div>
 
   <!-- Trust Strip -->
   <div class="trust-strip">
@@ -356,7 +358,7 @@
   <!-- Services -->
   <section id="services" class="section">
     <div class="container">
-      <div class="section__head">
+      <div class="section__head reveal">
         <div class="section-badge">What We Do</div>
         <h2>Services</h2>
         <p class="muted">Residential & commercial maintenance services.</p>
@@ -441,7 +443,7 @@
   <!-- Work Gallery -->
   <section id="work" class="section section--dark">
     <div class="container">
-      <div class="section__head">
+      <div class="section__head reveal">
         <div class="section-badge">Portfolio</div>
         <h2>Recent Work</h2>
         <p class="muted">A few examples of our recent projects.</p>
@@ -607,7 +609,7 @@
 <!-- Reviews Section -->
 <section id="reviews" class="section section--reviews">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head reveal">
       <div class="section-badge">Testimonials</div>
       <h2>What Our Clients Say</h2>
       <div class="reviews__stars">
@@ -883,6 +885,7 @@
     </div>
   </div>
 </section>
+  </main>
   <!-- Footer / Contact -->
   <footer id="contact" class="footer">
     <div class="container">
