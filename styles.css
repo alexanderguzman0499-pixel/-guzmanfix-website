@@ -1802,6 +1802,12 @@ a.service-card:hover { opacity: 1; }
   object-position: center top;
   display: block;
 }
+.about__portrait--logo {
+  object-fit: contain;
+  object-position: center center;
+  padding: 24px;
+  background: rgba(201,168,76,.06);
+}
 .about__contact-card {
   background: rgba(255,255,255,.06);
   border: 1px solid var(--border);
