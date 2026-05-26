@@ -360,6 +360,7 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
     idx = i;
     lbImg.style.opacity = '0';
     lbImg.src = imgs[i].src;
+    lbImg.alt = imgs[i].alt;
     lbImg.onload = () => { lbImg.style.opacity = '1'; };
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';

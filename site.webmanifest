@@ -4,7 +4,7 @@
   "description": "Professional handyman services in Clearwater & Tampa Bay, FL",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#060e1a",
   "theme_color": "#060e1a",
   "icons": [
     {

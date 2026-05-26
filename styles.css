@@ -594,7 +594,7 @@ input::placeholder, textarea::placeholder { color: rgba(255,255,255,.3); }
   .footer__inner { flex-direction: column; align-items: flex-start; gap: 14px; }
 }
 @media (max-width: 480px) {
-  .hero__badges { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .hero__badges { grid-template-columns: 1fr; gap: 8px; }
   .badge { padding: 12px 8px; }
   .badge__big { font-size: 1rem; }
   .badge__small { font-size: .72rem; }
