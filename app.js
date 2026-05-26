@@ -333,6 +333,21 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   slider.addEventListener('click', e => setPos(e.clientX));
 });
 
+/* ── Google Ads: call & WhatsApp click conversions ── */
+(function () {
+  function fireConversion() {
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { 'send_to': 'AW-18051795712/ysqKCKCthLIcEICW4p9D' });
+    }
+  }
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+    link.addEventListener('click', fireConversion);
+  });
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (link) {
+    link.addEventListener('click', fireConversion);
+  });
+})();
+
 /* ── Cookie consent ── */
 (function () {
   const bar = document.getElementById('cookieBar');
