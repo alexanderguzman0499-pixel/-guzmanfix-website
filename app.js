@@ -4,7 +4,7 @@ window.addEventListener('unhandledrejection', e => { console.error('[GRS] Unhand
 
 /* ── Language system ── */
 const LANG_KEY = 'grs-lang';
-let currentLang = 'en';
+let currentLang = localStorage.getItem(LANG_KEY) || 'en';
 
 const T = {
   en: {
@@ -59,6 +59,7 @@ const T = {
 
 function applyLang(lang) {
   currentLang = lang;
+  localStorage.setItem(LANG_KEY, lang);
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
@@ -296,9 +297,9 @@ if (progressBar) {
     en: ['flooring', 'plumbing', 'drywall', 'electrical', 'maintenance'],
     es: ['pisos', 'plomería', 'drywall', 'eléctrico', 'mantenimiento']
   };
-  const words = wordMap[currentLang] || wordMap.en;
-  let i = words.length - 1;
+  let i = (wordMap[currentLang] || wordMap.en).length - 1;
   setInterval(() => {
+    const words = wordMap[currentLang] || wordMap.en;
     el.classList.add('fade-out');
     setTimeout(() => {
       i = (i + 1) % words.length;
