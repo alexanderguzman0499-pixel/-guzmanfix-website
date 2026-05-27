@@ -134,6 +134,8 @@ mobileNav?.querySelectorAll('a').forEach(a => {
 
   function maxIdx() { return Math.max(0, total - perView); }
 
+  const MAX_VISIBLE_DOTS = 7;
+
   function buildDots() {
     dotsContainer.innerHTML = '';
     const pages = Math.ceil(total / perView);
@@ -149,7 +151,20 @@ mobileNav?.querySelectorAll('a').forEach(a => {
 
   function updateDots() {
     const page = Math.round(current / perView);
-    [...dotsContainer.children].forEach((d, i) => d.classList.toggle('active', i === page));
+    const pages = Math.ceil(total / perView);
+    const dots = [...dotsContainer.children];
+    if (pages <= MAX_VISIBLE_DOTS) {
+      dots.forEach((d, i) => { d.style.display = ''; d.classList.toggle('active', i === page); });
+    } else {
+      const half = Math.floor(MAX_VISIBLE_DOTS / 2);
+      let start = Math.max(0, page - half);
+      const end = Math.min(pages, start + MAX_VISIBLE_DOTS);
+      start = Math.max(0, end - MAX_VISIBLE_DOTS);
+      dots.forEach((d, i) => {
+        d.style.display = (i >= start && i < end) ? '' : 'none';
+        d.classList.toggle('active', i === page);
+      });
+    }
   }
 
   function goTo(n) {
