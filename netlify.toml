@@ -8,7 +8,7 @@
     X-Frame-Options           = "SAMEORIGIN"
     X-Content-Type-Options    = "nosniff"
     Referrer-Policy           = "strict-origin-when-cross-origin"
-    Permissions-Policy        = "camera=(), microphone=(), geolocation=(self), payment=()"
+    Permissions-Policy        = "camera=(), microphone=(), geolocation=(self), payment=(), interest-cohort=()"
     Content-Security-Policy   = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.google.com https://td.doubleclick.net; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://cm.g.doubleclick.net https://googleads.g.doubleclick.net https://td.doubleclick.net https://www.google.com https://www.googleadservices.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
 [[headers]]
@@ -19,12 +19,12 @@
 [[headers]]
   for = "/*.css"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=86400, must-revalidate"
 
 [[headers]]
   for = "/*.js"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=86400, must-revalidate"
 
 [[headers]]
   for = "/*.html"
@@ -35,6 +35,12 @@
   from = "/thanks"
   to = "/thanks.html"
   status = 200
+
+[[redirects]]
+  from = "https://www.guzmanfix.com/*"
+  to   = "https://guzmanfix.com/:splat"
+  status = 301
+  force  = true
 
 [[redirects]]
   from = "/*"

@@ -1,3 +1,28 @@
+/* ── Focus trap utility ── */
+const _trapMap = new Map();
+function trapFocus(el) {
+  const sel = 'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])';
+  const prev = document.activeElement;
+  function handler(e) {
+    if (e.key !== 'Tab') return;
+    const els = [...el.querySelectorAll(sel)];
+    if (!els.length) return;
+    const first = els[0], last = els[els.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  _trapMap.set(el, { handler, prev });
+  el.addEventListener('keydown', handler);
+  el.querySelector(sel)?.focus();
+}
+function releaseFocus(el) {
+  const entry = _trapMap.get(el);
+  if (!entry) return;
+  el.removeEventListener('keydown', entry.handler);
+  entry.prev?.focus();
+  _trapMap.delete(el);
+}
+
 /* ── Global error boundary ── */
 window.onerror = (msg, src, line) => { console.error(`[GRS] JS error: ${msg} (${src}:${line})`); };
 window.addEventListener('unhandledrejection', e => { console.error('[GRS] Unhandled promise:', e.reason); });
@@ -77,16 +102,30 @@ document.getElementById('langToggle')?.addEventListener('click', () => {
 
 if (currentLang === 'es') applyLang('es');
 
-/* ── Header shrink on scroll ── */
-const header = document.querySelector('.header');
-window.addEventListener('scroll', () => {
-  if (header) header.classList.toggle('header--scrolled', window.scrollY > 60);
-}, { passive: true });
+/* ── Google Consent Mode — update when already accepted ── */
+(function () {
+  if (localStorage.getItem('cookieChoice') === 'accepted' && typeof gtag === 'function') {
+    gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+  }
+})();
 
-/* ── Scroll-to-top ── */
+/* ── Scroll handler (consolidated) ── */
+const progressBar = document.getElementById('scrollProgress');
+const header = document.querySelector('.header');
 const topBtn = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => {
-  topBtn?.classList.toggle('visible', window.scrollY > 400);
+  const scrollY = window.scrollY;
+  if (header) header.classList.toggle('header--scrolled', scrollY > 60);
+  topBtn?.classList.toggle('visible', scrollY > 400);
+  if (progressBar) {
+    const pct = scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    progressBar.style.width = Math.min(100, pct) + '%';
+  }
 }, { passive: true });
 topBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
@@ -199,6 +238,10 @@ mobileNav?.querySelectorAll('a').forEach(a => {
 
   buildDots();
   startAuto();
+
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stopAuto() : startAuto();
+  });
 })();
 
 /* ── FAQ Accordion ── */
@@ -247,15 +290,6 @@ document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* ── Scroll progress bar ── */
-const progressBar = document.getElementById('scrollProgress');
-if (progressBar) {
-  window.addEventListener('scroll', () => {
-    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-    progressBar.style.width = Math.min(100, pct) + '%';
-  }, { passive: true });
-}
-
 /* ── Splash screen ── */
 (function () {
   const splash = document.getElementById('splash');
@@ -282,15 +316,31 @@ if (progressBar) {
   if (!popup) return;
   let shown = sessionStorage.getItem('exitShown');
 
+  function showPopup() {
+    if (shown) return;
+    shown = true;
+    sessionStorage.setItem('exitShown', '1');
+    popup.classList.add('active');
+    trapFocus(popup);
+  }
+
+  // Desktop: mouse leave top of page
   document.addEventListener('mouseleave', e => {
-    if (e.clientY < 60 && !shown) {
-      shown = true;
-      sessionStorage.setItem('exitShown', '1');
-      popup.classList.add('active');
-    }
+    if (e.clientY < 60) showPopup();
   });
 
-  const close = () => popup.classList.remove('active');
+  // Mobile: scroll up after scrolling down
+  let lastScrollY = 0;
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    if (!shown && current < lastScrollY && current > 400) showPopup();
+    lastScrollY = current;
+  }, { passive: true });
+
+  const close = () => {
+    popup.classList.remove('active');
+    releaseFocus(popup);
+  };
   document.getElementById('exitClose')?.addEventListener('click', close);
   popup.addEventListener('click', e => { if (e.target === popup) close(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
@@ -331,44 +381,64 @@ if (progressBar) {
   };
 
   rebuildRotator();
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearInterval(timer);
+    else rebuildRotator();
+  });
 })();
 
-/* ── Before / After Sliders (supports multiple) ── */
-document.querySelectorAll('[data-ba]').forEach(slider => {
-  const after  = slider.querySelector('.ba-after');
-  const handle = slider.querySelector('.ba-handle');
-  let dragging = false;
+/* ── Before / After Sliders (single global listeners) ── */
+(function () {
+  const sliders = [...document.querySelectorAll('[data-ba]')];
+  if (!sliders.length) return;
 
-  function setPos(clientX) {
-    const rect = slider.getBoundingClientRect();
-    const pct  = Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100));
-    after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-    handle.style.left    = pct + '%';
+  let active = null;
+
+  function setPos(slider, clientX) {
+    const after  = slider.querySelector('.ba-after');
+    const handle = slider.querySelector('.ba-handle');
+    const rect   = slider.getBoundingClientRect();
+    const pct    = Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100));
+    after.style.clipPath  = `inset(0 ${100 - pct}% 0 0)`;
+    handle.style.left     = pct + '%';
   }
 
-  handle.addEventListener('mousedown',  e => { dragging = true; e.preventDefault(); });
-  window.addEventListener('mouseup',    () => { dragging = false; });
-  window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX); });
+  sliders.forEach(slider => {
+    const handle = slider.querySelector('.ba-handle');
+    handle.addEventListener('mousedown',  e => { active = slider; e.preventDefault(); });
+    handle.addEventListener('touchstart', () => { active = slider; }, { passive: true });
+    slider.addEventListener('click',      e => setPos(slider, e.clientX));
+  });
 
-  handle.addEventListener('touchstart', () => { dragging = true; }, { passive: true });
-  window.addEventListener('touchend',   () => { dragging = false; });
-  window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-
-  slider.addEventListener('click', e => setPos(e.clientX));
-});
-
+  window.addEventListener('mouseup',   () => { active = null; });
+  window.addEventListener('mousemove', e => { if (active) setPos(active, e.clientX); });
+  window.addEventListener('touchend',  () => { active = null; });
+  window.addEventListener('touchmove', e => {
+    if (active) setPos(active, e.touches[0].clientX);
+  }, { passive: true });
+})();
 
 /* ── Cookie consent ── */
 (function () {
   const bar = document.getElementById('cookieBar');
   if (!bar || localStorage.getItem('cookieChoice')) return;
   setTimeout(() => bar.classList.add('visible'), 2200);
+
   function dismiss(choice) {
     localStorage.setItem('cookieChoice', choice);
     bar.classList.remove('visible');
     setTimeout(() => bar.remove(), 500);
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        'ad_storage':         choice === 'accepted' ? 'granted' : 'denied',
+        'analytics_storage':  choice === 'accepted' ? 'granted' : 'denied',
+        'ad_user_data':       choice === 'accepted' ? 'granted' : 'denied',
+        'ad_personalization': choice === 'accepted' ? 'granted' : 'denied'
+      });
+    }
   }
-  document.getElementById('cookieAccept')?.addEventListener('click', () => dismiss('accepted'));
+  document.getElementById('cookieAccept')?.addEventListener('click',  () => dismiss('accepted'));
   document.getElementById('cookieDecline')?.addEventListener('click', () => dismiss('declined'));
 })();
 
@@ -383,16 +453,19 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
 
   function open(i) {
     idx = i;
+    lbImg.onload = null;
     lbImg.style.opacity = '0';
     lbImg.src = imgs[i].src;
     lbImg.alt = imgs[i].alt;
     lbImg.onload = () => { lbImg.style.opacity = '1'; };
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
+    trapFocus(lb);
   }
   function close() {
     lb.classList.remove('active');
     document.body.style.overflow = '';
+    releaseFocus(lb);
   }
   function prev() { open((idx - 1 + imgs.length) % imgs.length); }
   function next() { open((idx + 1) % imgs.length); }
