@@ -3,11 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051795712"></script>
+  <!-- Google Consent Mode v2 — no personal data collected until user accepts -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051795712"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'AW-18051795712');
   </script>
@@ -20,6 +29,9 @@
   <meta name="theme-color" content="#060e1a" />
   <meta name="google-site-verification" content="vNkAnTumD1HxfOaKzosnD7VLB6cFuHe3D0W1QwcT9uY" />
   <link rel="canonical" href="https://guzmanfix.com/" />
+  <link rel="alternate" hreflang="en" href="https://guzmanfix.com/" />
+  <link rel="alternate" hreflang="es" href="https://guzmanfix.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://guzmanfix.com/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="preload" href="assets/logo-transparent.png" as="image" type="image/png" />
@@ -34,6 +46,7 @@
 
   <!-- Open Graph / Social sharing -->
   <meta property="og:type"        content="website" />
+  <meta property="og:site_name"  content="Guzman Reliable Services LLC" />
   <meta property="og:url"         content="https://guzmanfix.com/" />
   <meta property="og:title"       content="Guzman Reliable Services LLC — Tampa Bay Handyman" />
   <meta property="og:description" content="Professional maintenance, repairs, flooring, drywall, plumbing & electrical. Serving Clearwater, St. Pete & all of Tampa Bay. Free estimates." />
@@ -201,6 +214,7 @@
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -247,7 +261,7 @@
     <a class="btn primary" href="#estimate" data-i18n="nav.getEstimate">Get Estimate</a>
   </nav>
   </header>
-<main>
+<main id="main-content">
   <!-- Hero -->
   <div class="hero">
     <div class="hero__left">
@@ -511,11 +525,11 @@
       </div>
 
       <div class="gallery">
-        <div class="carousel" id="gallery-carousel">
+        <div class="carousel" id="gallery-carousel" role="region" aria-label="Work gallery" aria-roledescription="carousel">
           <div class="carousel__track" id="carouselTrack">
-            <div class="carousel__slide"><img src="assets/Work1.jpg" alt="General maintenance work completed in Tampa Bay by Guzman Reliable Services" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="assets/Work2.jpg" alt="Plumbing repair and installation in Clearwater FL" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="assets/Work4.jpg" alt="LVP flooring installation by Guzman Reliable Services LLC" loading="lazy" decoding="async" /></div>
+            <div class="carousel__slide"><img src="assets/Work1.jpg" alt="General maintenance work completed in Tampa Bay by Guzman Reliable Services" /></div>
+            <div class="carousel__slide"><img src="assets/Work2.jpg" alt="Plumbing repair and installation in Clearwater FL" /></div>
+            <div class="carousel__slide"><img src="assets/Work4.jpg" alt="LVP flooring installation by Guzman Reliable Services LLC" /></div>
             <div class="carousel__slide"><img src="assets/Work6.jpg" alt="Apartment turn and punch list work in Tampa Bay" loading="lazy" decoding="async" /></div>
             <div class="carousel__slide"><img src="assets/Work8.jpg" alt="Door installation and hardware replacement in St. Petersburg FL" loading="lazy" decoding="async" /></div>
             <div class="carousel__slide"><img src="assets/Work9.jpg" alt="Interior painting and drywall finishing in Largo FL" loading="lazy" decoding="async" /></div>
@@ -675,14 +689,14 @@
       <div class="section-badge">Testimonials</div>
       <h2>What Our Clients Say</h2>
       <div class="reviews__stars">
-        ★★★★★ &nbsp;<strong>5.0</strong>
+        <span role="img" aria-label="5 out of 5 stars">★★★★★</span> &nbsp;<strong>5.0</strong>
         <span class="muted"> — 5 Google Reviews</span>
       </div>
       <a href="https://g.page/r/CX1Qey0Z35CREBM/review" target="_blank" rel="noopener noreferrer" class="btn btn--sm">⭐ Leave us a Review</a>
     </div>
     <div class="reviews__grid">
       <div class="review-card reveal">
-        <div class="review-card__stars">★★★★★</div>
+        <div class="review-card__stars"><span role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
         <p>"Great service, very professional and reliable, highly recommended!"</p>
         <div class="review-card__author">
           <div class="review-card__avatar">M</div>
@@ -690,7 +704,7 @@
         </div>
       </div>
       <div class="review-card reveal reveal-delay-1">
-        <div class="review-card__stars">★★★★★</div>
+        <div class="review-card__stars"><span role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
         <p>"Great service! Very reliable and professional. Everything was done on time and looks amazing. Highly recommend!"</p>
         <div class="review-card__author">
           <div class="review-card__avatar">I</div>
@@ -698,7 +712,7 @@
         </div>
       </div>
       <div class="review-card reveal reveal-delay-2">
-        <div class="review-card__stars">★★★★★</div>
+        <div class="review-card__stars"><span role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
         <p>"The most amazing service. Extremely reliable and professional. The communication was excellent as well. Would definitely recommend."</p>
         <div class="review-card__author">
           <div class="review-card__avatar">J</div>
@@ -706,7 +720,7 @@
         </div>
       </div>
       <div class="review-card reveal">
-        <div class="review-card__stars">★★★★★</div>
+        <div class="review-card__stars"><span role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
         <p>"I was impressed by the quality of service and attention to detail. The company found a solution immediately and did impeccable work. Extra points for the care shown at the end of the service. Thank you!"</p>
         <div class="review-card__author">
           <div class="review-card__avatar">R</div>
@@ -714,7 +728,7 @@
         </div>
       </div>
       <div class="review-card reveal reveal-delay-1">
-        <div class="review-card__stars">★★★★★</div>
+        <div class="review-card__stars"><span role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
         <p>"Excellent service! I highly recommend Alexander's company. They are very professional, responsible, and pay close attention to detail in every job they do. I would definitely hire them again!"</p>
         <div class="review-card__author">
           <div class="review-card__avatar">J</div>
@@ -1124,7 +1138,7 @@
 </div>
 
 <!-- Cookie consent banner -->
-<div class="cookie-bar" id="cookieBar" role="status" aria-label="Cookie consent" aria-live="polite">
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-modal="false" aria-label="Cookie consent">
   <div class="cookie-bar__inner">
     <p>We use cookies for analytics &amp; advertising. See our <a href="/privacy.html">Privacy Policy</a>.</p>
     <div class="cookie-bar__btns">

@@ -3,11 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051795712"></script>
+  <!-- Google Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+    if (localStorage.getItem('cookieChoice') === 'accepted') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted'
+      });
+    }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051795712"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'AW-18051795712');
     if (!sessionStorage.getItem('conv_fired')) {
@@ -43,7 +60,7 @@
         <span class="brand__tagline">Maintenance • Repairs • Reliability</span>
       </div>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="nav" id="mobileNav">
