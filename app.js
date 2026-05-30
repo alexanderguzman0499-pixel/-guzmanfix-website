@@ -616,3 +616,21 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
 
   buildServices();
 })();
+
+/* ── Google Ads conversion tracking — calls & WhatsApp ── */
+(function () {
+  const ADS_CONVERSION = 'AW-18051795712/ysqKCKCthLIcEICW4p9D';
+
+  function fireConversion(label) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'conversion', { send_to: ADS_CONVERSION, event_label: label });
+  }
+
+  document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+    a.addEventListener('click', () => fireConversion('phone_click'));
+  });
+
+  document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+    a.addEventListener('click', () => fireConversion('whatsapp_click'));
+  });
+})();
