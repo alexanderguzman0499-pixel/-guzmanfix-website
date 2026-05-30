@@ -68,6 +68,7 @@ function applyLang(lang) {
   const btn = document.getElementById('langToggle');
   if (btn) btn.textContent = lang === 'en' ? 'ES' : 'EN';
   if (typeof rebuildQuoter === 'function') rebuildQuoter();
+  if (typeof rebuildRotator === 'function') rebuildRotator();
 }
 
 document.getElementById('langToggle')?.addEventListener('click', () => {
@@ -312,16 +313,24 @@ if (progressBar) {
     en: ['flooring', 'plumbing', 'drywall', 'electrical', 'maintenance'],
     es: ['pisos', 'plomería', 'drywall', 'eléctrico', 'mantenimiento']
   };
-  let i = (wordMap[currentLang] || wordMap.en).length - 1;
-  setInterval(() => {
+  let timer;
+  let i = 0;
+
+  window.rebuildRotator = function () {
+    clearInterval(timer);
     const words = wordMap[currentLang] || wordMap.en;
-    el.classList.add('fade-out');
-    setTimeout(() => {
-      i = (i + 1) % words.length;
-      el.textContent = words[i];
-      el.classList.remove('fade-out');
-    }, 320);
-  }, 2600);
+    i = words.length - 1;
+    timer = setInterval(() => {
+      el.classList.add('fade-out');
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove('fade-out');
+      }, 320);
+    }, 2600);
+  };
+
+  rebuildRotator();
 })();
 
 /* ── Before / After Sliders (supports multiple) ── */
