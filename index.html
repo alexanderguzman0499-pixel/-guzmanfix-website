@@ -233,7 +233,7 @@
       </div>
     </div>
 
-  <button type="button" class="lang-toggle" id="langToggle" aria-label="Switch language">ES</button>
+  <button type="button" class="lang-toggle" id="langToggle" aria-label="Cambiar idioma a Español">ES</button>
   <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -295,14 +295,14 @@
           <input type="hidden" name="form-name" value="estimate" />
           <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
 
-          <label class="field">
+          <label class="field" for="est-name">
             <span>Name</span>
-            <input name="name" type="text" placeholder="Your name" autocomplete="name" required />
+            <input id="est-name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
           </label>
 
-          <label class="field">
+          <label class="field" for="est-phone">
             <span>Phone</span>
-            <input name="phone" type="tel" placeholder="(XXX) XXX-XXXX" autocomplete="tel" required />
+            <input id="est-phone" name="phone" type="tel" placeholder="(XXX) XXX-XXXX" autocomplete="tel" required />
           </label>
 
           <fieldset class="fieldset">
@@ -1105,7 +1105,7 @@
     <form class="exit-popup__form" name="exit-callback" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
       <input type="hidden" name="form-name" value="exit-callback" />
       <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
-      <input type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" aria-label="Your phone number" required />
+      <input id="exit-phone" type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" aria-label="Your phone number" required />
       <button type="submit">Call me back — it's free</button>
     </form>
     <div class="exit-popup__trust">🔒 We never spam. Your info stays private.</div>

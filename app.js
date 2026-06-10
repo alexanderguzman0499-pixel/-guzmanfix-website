@@ -66,7 +66,10 @@ function applyLang(lang) {
     if (T[lang][key]) el.textContent = T[lang][key];
   });
   const btn = document.getElementById('langToggle');
-  if (btn) btn.textContent = lang === 'en' ? 'ES' : 'EN';
+  if (btn) {
+    btn.textContent = lang === 'en' ? 'ES' : 'EN';
+    btn.setAttribute('aria-label', lang === 'en' ? 'Cambiar idioma a Español' : 'Switch language to English');
+  }
   if (typeof rebuildQuoter === 'function') rebuildQuoter();
   if (typeof rebuildRotator === 'function') rebuildRotator();
 }
@@ -357,20 +360,6 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   slider.addEventListener('click', e => setPos(e.clientX));
 });
 
-/* ── Google Ads: call & WhatsApp click conversions ── */
-(function () {
-  function fireConversion() {
-    if (typeof gtag === 'function') {
-      gtag('event', 'conversion', { 'send_to': 'AW-18051795712/ysqKCKCthLIcEICW4p9D' });
-    }
-  }
-  document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
-    link.addEventListener('click', fireConversion);
-  });
-  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (link) {
-    link.addEventListener('click', fireConversion);
-  });
-})();
 
 /* ── Cookie consent ── */
 (function () {
