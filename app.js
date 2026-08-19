@@ -130,7 +130,7 @@ mobileNav?.querySelectorAll('a').forEach(a => {
   let autoTimer;
 
   function getPerView() {
-    return window.innerWidth < 700 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+    return window.innerWidth <= 700 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
   }
 
   function maxIdx() { return Math.max(0, total - perView); }
@@ -220,7 +220,7 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 /* ── Animated counters ── */
 function animateCounter(el) {
   const target = parseFloat(el.dataset.count);
-  const isInt = Number.isInteger(target);
+  const isInt = !el.dataset.count.includes('.');
   const duration = 1800;
   const start = performance.now();
   const tick = now => {
@@ -356,21 +356,6 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
 
   slider.addEventListener('click', e => setPos(e.clientX));
 });
-
-/* ── Google Ads: call & WhatsApp click conversions ── */
-(function () {
-  function fireConversion() {
-    if (typeof gtag === 'function') {
-      gtag('event', 'conversion', { 'send_to': 'AW-18051795712/ysqKCKCthLIcEICW4p9D' });
-    }
-  }
-  document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
-    link.addEventListener('click', fireConversion);
-  });
-  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (link) {
-    link.addEventListener('click', fireConversion);
-  });
-})();
 
 /* ── Cookie consent ── */
 (function () {
