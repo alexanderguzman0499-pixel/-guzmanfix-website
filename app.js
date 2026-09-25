@@ -4,7 +4,7 @@ window.addEventListener('unhandledrejection', e => { console.error('[GRS] Unhand
 
 /* ── Language system ── */
 const LANG_KEY = 'grs-lang';
-let currentLang = localStorage.getItem(LANG_KEY) || 'en';
+let currentLang = 'en'; try { currentLang = localStorage.getItem(LANG_KEY) === 'es' ? 'es' : 'en'; } catch {}
 
 const T = {
   en: {
@@ -59,7 +59,7 @@ const T = {
 
 function applyLang(lang) {
   currentLang = lang;
-  localStorage.setItem(LANG_KEY, lang);
+  try { localStorage.setItem(LANG_KEY, lang); } catch {}
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
@@ -75,7 +75,7 @@ document.getElementById('langToggle')?.addEventListener('click', () => {
   applyLang(currentLang === 'en' ? 'es' : 'en');
 });
 
-if (currentLang === 'es') applyLang('es');
+
 
 /* ── Header shrink on scroll ── */
 const header = document.querySelector('.header');
@@ -176,7 +176,7 @@ mobileNav?.querySelectorAll('a').forEach(a => {
 
   function next() { goTo(current >= maxIdx() ? 0 : current + 1); }
   function prev() { goTo(current <= 0 ? maxIdx() : current - 1); }
-  function startAuto() { clearInterval(autoTimer); autoTimer = setInterval(next, 4200); }
+  function startAuto() { clearInterval(autoTimer); }
   function stopAuto()  { clearInterval(autoTimer); }
 
   document.getElementById('prevBtn')?.addEventListener('click', () => { stopAuto(); prev(); startAuto(); });
@@ -333,30 +333,6 @@ if (progressBar) {
   rebuildRotator();
 })();
 
-/* ── Before / After Sliders (supports multiple) ── */
-document.querySelectorAll('[data-ba]').forEach(slider => {
-  const after  = slider.querySelector('.ba-after');
-  const handle = slider.querySelector('.ba-handle');
-  let dragging = false;
-
-  function setPos(clientX) {
-    const rect = slider.getBoundingClientRect();
-    const pct  = Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100));
-    after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-    handle.style.left    = pct + '%';
-  }
-
-  handle.addEventListener('mousedown',  e => { dragging = true; e.preventDefault(); });
-  window.addEventListener('mouseup',    () => { dragging = false; });
-  window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX); });
-
-  handle.addEventListener('touchstart', () => { dragging = true; }, { passive: true });
-  window.addEventListener('touchend',   () => { dragging = false; });
-  window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-
-  slider.addEventListener('click', e => setPos(e.clientX));
-});
-
 /* ── Cookie consent ── */
 (function () {
   const bar = document.getElementById('cookieBar');
@@ -383,13 +359,16 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   function open(i) {
     idx = i;
     lbImg.style.opacity = '0';
+    lbImg.onload = () => { lbImg.style.opacity = '1'; };
     lbImg.src = imgs[i].src;
     lbImg.alt = imgs[i].alt;
     lbImg.onload = () => { lbImg.style.opacity = '1'; };
+    if (!lb.open) { lb.showModal(); }
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
   function close() {
+    lb.close();
     lb.classList.remove('active');
     document.body.style.overflow = '';
   }
@@ -407,7 +386,7 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('active')) return;
-    if (e.key === 'Escape')     close();
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
     if (e.key === 'ArrowLeft')  prev();
     if (e.key === 'ArrowRight') next();
   });
