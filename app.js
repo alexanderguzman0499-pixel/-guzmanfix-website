@@ -336,12 +336,15 @@ if (progressBar) {
 /* ── Cookie consent ── */
 (function () {
   const bar = document.getElementById('cookieBar');
-  if (!bar || localStorage.getItem('cookieChoice')) return;
-  setTimeout(() => bar.classList.add('visible'), 2200);
+  if (!bar) return;
+  let savedChoice = null;
+  try { savedChoice = localStorage.getItem('cookieChoice'); } catch (_) {}
+  if (savedChoice) { bar.remove(); return; }
+  const showTimer = setTimeout(() => bar.classList.add('visible'), 2200);
   function dismiss(choice) {
-    localStorage.setItem('cookieChoice', choice);
-    bar.classList.remove('visible');
-    setTimeout(() => bar.remove(), 500);
+    clearTimeout(showTimer);
+    bar.remove();
+    try { localStorage.setItem('cookieChoice', choice); } catch (_) {}
   }
   document.getElementById('cookieAccept')?.addEventListener('click', () => dismiss('accepted'));
   document.getElementById('cookieDecline')?.addEventListener('click', () => dismiss('declined'));
