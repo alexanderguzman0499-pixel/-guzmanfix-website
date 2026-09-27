@@ -4,6 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<!-- Consent Mode: honour a saved "Decline" before any Google tag loads -->
+<script>window.dataLayer=window.dataLayer||[];(function(){var c=null;try{c=localStorage.getItem('cookieChoice')}catch(e){}function g(){dataLayer.push(arguments)}var v=c==='declined'?'denied':'granted';g('consent','default',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v});})();</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -196,8 +198,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" media="print" onload="this.media='all'" rel="stylesheet"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/></noscript>
 <link href="styles.css?v=grs-public-20260925" rel="stylesheet"/>
-<script defer="" src="app.js?v=grs-cookies-20260925"></script>
-<link href="redesign.css?v=grs-public-20260925" rel="stylesheet"/><script defer="True" src="redesign.js?v=grs-public-20260925"></script><link href="future.css?v=grs-public-20260925" rel="stylesheet"/><script defer="True" src="future.js?v=grs-public-20260925"></script><link rel="stylesheet" href="experience.css?v=grs-cookies-20260925"><script defer src="experience.js?v=grs-public-20260925"></script></head>
+<script defer="" src="app.js?v=grs-audit-20260927"></script>
+<link href="redesign.css?v=grs-public-20260925" rel="stylesheet"/><script defer="True" src="redesign.js?v=grs-audit-20260927"></script><link href="future.css?v=grs-public-20260925" rel="stylesheet"/><script defer="True" src="future.js?v=grs-public-20260925"></script><link rel="stylesheet" href="experience.css?v=grs-audit-20260927"><script defer src="experience.js?v=grs-public-20260925"></script></head>
 <body class="future-site">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGQTGM84"
@@ -805,7 +807,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="card">
 <h2 data-i18n="form.h2">Get a quick estimate</h2>
 <p class="muted" data-i18n="form.desc">Tell us what you need and we’ll reply with next steps.</p>
-<form action="https://guzmanfix.com/thanks" class="form" method="POST" name="estimate" data-netlify="true" netlify-honeypot="bot-field">
+<form action="/thanks" class="form" method="POST" name="estimate" data-netlify="true" netlify-honeypot="bot-field">
 <input name="form-name" type="hidden" value="estimate"/>
 <p style="display:none;"><label>Don't fill this out: <input name="bot-field"/></label></p>
 <label class="field">

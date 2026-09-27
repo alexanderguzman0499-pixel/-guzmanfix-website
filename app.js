@@ -340,11 +340,24 @@ if (progressBar) {
   let savedChoice = null;
   try { savedChoice = localStorage.getItem('cookieChoice'); } catch (_) {}
   if (savedChoice) { bar.remove(); return; }
-  const showTimer = setTimeout(() => bar.classList.add('visible'), 2200);
+  const root = document.documentElement;
+  const showTimer = setTimeout(() => {
+    bar.classList.add('visible');
+    // Lift the floating buttons so the banner never covers them.
+    root.style.setProperty('--cookie-h', bar.offsetHeight + 'px');
+    root.classList.add('cookie-open');
+  }, 2200);
   function dismiss(choice) {
     clearTimeout(showTimer);
     bar.remove();
+    root.classList.remove('cookie-open');
     try { localStorage.setItem('cookieChoice', choice); } catch (_) {}
+    if (choice === 'declined' && typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        ad_storage: 'denied', ad_user_data: 'denied',
+        ad_personalization: 'denied', analytics_storage: 'denied'
+      });
+    }
   }
   document.getElementById('cookieAccept')?.addEventListener('click', () => dismiss('accepted'));
   document.getElementById('cookieDecline')?.addEventListener('click', () => dismiss('declined'));
