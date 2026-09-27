@@ -80,7 +80,8 @@ const phrases={
  "Tampa Bay's trusted handyman — quality repairs and maintenance done right, every time.":'Tu handyman de confianza en Tampa Bay: reparaciones y mantenimiento de calidad, bien hechos siempre.',
  'WhatsApp us':'Escríbenos por WhatsApp',
  'We use cookies for analytics & advertising. See our':'Usamos cookies para analítica y publicidad. Consulta nuestra',
- 'Accept':'Aceptar','Decline':'Rechazar'
+ 'Accept':'Aceptar','Decline':'Rechazar',
+ 'Swipe to see more services →':'Desliza para ver más servicios →'
 };
 const nodes=[];const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
 while(walker.nextNode()){

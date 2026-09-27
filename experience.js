@@ -57,14 +57,10 @@ comparisons.forEach(c=>{reveal(c,50);c.handle.addEventListener('keydown',e=>{if(
 let scrollFrame=0;
 function scrollReveal(){scrollFrame=0;if(!motion())return;comparisons.forEach(c=>{if(c.manual)return;const r=c.el.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;reveal(c,(innerHeight*.8-r.top)/(innerHeight*.6)*100)})}
 addEventListener('scroll',()=>{if(!scrollFrame&&motion())scrollFrame=requestAnimationFrame(scrollReveal)},{passive:true});$('#compare-auto').addEventListener('click',()=>{comparisons.forEach(c=>c.manual=false);if(motion())scrollReveal();else comparisons.forEach(c=>reveal(c,50))});
-// Intro is nonblocking, times out even if other code fails, and is never replayed this session.
-const entry=$('#grs-entry');const dismiss=()=>{entry.hidden=true;};$('#entry-skip').addEventListener('click',dismiss);
-let visited=true;try{visited=sessionStorage.getItem('grs-entry-seen')==='1';sessionStorage.setItem('grs-entry-seen','1')}catch{}
-if(!visited&&motion()){entry.hidden=false;setTimeout(dismiss,1900);addEventListener('keydown',dismiss,{once:true});entry.addEventListener('animationend',e=>{if(e.animationName==='grs-entry-out')dismiss()});}
 setTimeout(()=>document.body.classList.add('grs-hero-ready'),1600);
 // All automatic movement and media obey reduced motion, pause and page visibility.
 const video=$('#grs-introduction');let videoVisible=false;
-function syncMotion(){if(!motion()){dismiss();video.pause();}document.body.classList.toggle('grs-hidden',document.hidden);document.dispatchEvent(new CustomEvent('grs-motion-change',{detail:motion()}));}
+function syncMotion(){if(!motion())video.pause();document.body.classList.toggle('grs-hidden',document.hidden);document.dispatchEvent(new CustomEvent('grs-motion-change',{detail:motion()}));}
 new MutationObserver(syncMotion).observe(document.body,{attributes:true,attributeFilter:['class']});
 document.addEventListener('visibilitychange',syncMotion);reduced.addEventListener('change',syncMotion);
 video.addEventListener('play',()=>{if(document.hidden||!videoVisible)video.pause()});
