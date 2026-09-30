@@ -81,7 +81,13 @@ const phrases={
  'WhatsApp us':'Escríbenos por WhatsApp',
  'We use cookies for analytics & advertising. See our':'Usamos cookies para analítica y publicidad. Consulta nuestra',
  'Accept':'Aceptar','Decline':'Rechazar',
- 'Swipe to see more services →':'Desliza para ver más servicios →'
+ 'Swipe to see more services →':'Desliza para ver más servicios →',
+ 'Our Handyman Services in Tampa Bay':'Nuestros servicios de handyman en Tampa Bay',
+ 'Plumbing Repairs in Clearwater & St. Petersburg':'Plomería en Clearwater y St. Petersburg',
+ 'Electrical Help: Fans, Lighting & Smart Home':'Electricidad: ventiladores, iluminación y hogar inteligente',
+ 'Drywall & Painting Done Right':'Drywall y pintura bien hechos',
+ 'Flooring Installation: LVP, Laminate & Tile':'Instalación de pisos: LVP, laminado y cerámica',
+ 'Apartment Turns & Punch Lists for Property Managers':'Preparación de apartamentos y punch lists para administradores'
 };
 const nodes=[];const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
 while(walker.nextNode()){
@@ -92,7 +98,8 @@ while(walker.nextNode()){
 }
 function translateRedesign(){
  const es=currentLang==='es';
- document.querySelector('h1').innerHTML=es?'Tu hogar.<br>En manos <em>confiables.</em>':'Your home.<br>In <em>reliable</em> hands.';
+ document.querySelector('h1').innerHTML=es?'Handyman en Clearwater y Tampa Bay — <em>reparaciones bien hechas</em>':'Handyman in Clearwater &amp; Tampa Bay — <em>Repairs Done Right</em>';
+ document.getElementById('hero-intro').innerHTML=es?'Ayudamos a propietarios y administradores de propiedades en Clearwater, St. Petersburg, Largo, Tampa y alrededores con reparaciones rápidas y confiables. Plomería, electricidad, drywall, pintura, pisos y más: un solo equipo de confianza y estimados gratis. Llama al <a href="tel:+17274795969">(727) 479-5969</a>.':'We help homeowners and property managers in Clearwater, St. Petersburg, Largo, Tampa and surrounding areas with fast, reliable repairs. Plumbing, electrical, drywall, painting, flooring and more — one trusted team, free estimates. Call <a href="tel:+17274795969">(727) 479-5969</a>.';
  nodes.forEach(({n,key,raw})=>n.textContent=es?raw.replace(raw.trim(),phrases[key]):raw);
  document.querySelector('[name="name"]').placeholder=es?'Tu nombre':'Your name';
  document.querySelector('[name="details"]').placeholder=es?'¿Qué necesitas reparar o mejorar?':'What needs fixing or improving?';
