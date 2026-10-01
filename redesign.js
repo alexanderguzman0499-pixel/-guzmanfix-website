@@ -69,7 +69,7 @@ while(walker.nextNode()){
 }
 function translateRedesign(){
  const es=currentLang==='es';
- document.querySelector('h1').innerHTML=es?'Tu hogar.<br>En manos <em>confiables.</em>':'Your home.<br>In <em>reliable</em> hands.';
+ document.querySelector('h1').innerHTML=es?'Handyman en Clearwater, FL<br>Reparaciones del hogar en <em>Tampa Bay</em>':'Handyman in Clearwater, FL<br>Tampa Bay <em>Home Repairs</em> Done Right';
  nodes.forEach(({n,key,raw})=>n.textContent=es?raw.replace(key,phrases[key]):raw);
  document.querySelector('[name="name"]').placeholder=es?'Tu nombre':'Your name';
  document.querySelector('[name="details"]').placeholder=es?'¿Qué necesitas reparar o mejorar?':'What needs fixing or improving?';
