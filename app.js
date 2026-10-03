@@ -256,16 +256,6 @@ if (progressBar) {
   }, { passive: true });
 }
 
-/* ── Splash screen ── */
-(function () {
-  const splash = document.getElementById('splash');
-  if (!splash) return;
-  setTimeout(() => {
-    splash.classList.add('hidden');
-    setTimeout(() => splash.remove(), 600);
-  }, 1700);
-})();
-
 /* ── Cursor glow ── */
 (function () {
   const glow = document.getElementById('cursorGlow');
@@ -340,11 +330,24 @@ if (progressBar) {
   let savedChoice = null;
   try { savedChoice = localStorage.getItem('cookieChoice'); } catch (_) {}
   if (savedChoice) { bar.remove(); return; }
-  const showTimer = setTimeout(() => bar.classList.add('visible'), 2200);
+  const root = document.documentElement;
+  const showTimer = setTimeout(() => {
+    bar.classList.add('visible');
+    // Lift the floating buttons so the banner never covers them.
+    root.style.setProperty('--cookie-h', bar.offsetHeight + 'px');
+    root.classList.add('cookie-open');
+  }, 2200);
   function dismiss(choice) {
     clearTimeout(showTimer);
     bar.remove();
+    root.classList.remove('cookie-open');
     try { localStorage.setItem('cookieChoice', choice); } catch (_) {}
+    if (choice === 'declined' && typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        ad_storage: 'denied', ad_user_data: 'denied',
+        ad_personalization: 'denied', analytics_storage: 'denied'
+      });
+    }
   }
   document.getElementById('cookieAccept')?.addEventListener('click', () => dismiss('accepted'));
   document.getElementById('cookieDecline')?.addEventListener('click', () => dismiss('declined'));
@@ -393,195 +396,6 @@ if (progressBar) {
     if (e.key === 'ArrowLeft')  prev();
     if (e.key === 'ArrowRight') next();
   });
-})();
-
-/* ── Interactive Price Quoter ── */
-(function () {
-  const widget = document.getElementById('quoter-widget');
-  if (!widget) return;
-
-  const allServices = {
-    en: [
-      { icon: '🪵', name: 'Flooring',       desc: 'LVP, laminate, tile, hardwood',
-        scopes: [
-          { icon: '📐', label: 'Small',  sub: 'Up to 200 sq ft', range: '$400 – $800' },
-          { icon: '🏠', label: 'Medium', sub: '200 – 500 sq ft', range: '$800 – $1,800' },
-          { icon: '🏢', label: 'Large',  sub: '500+ sq ft',      range: '$1,800 – $4,000' }
-        ]
-      },
-      { icon: '🧱', name: 'Drywall',        desc: 'Repair, patches, texture',
-        scopes: [
-          { icon: '🔧', label: 'Small',  sub: 'Patches / small holes',   range: '$150 – $350' },
-          { icon: '🏠', label: 'Medium', sub: 'Section or water damage', range: '$350 – $900' },
-          { icon: '🏢', label: 'Large',  sub: 'Full room or multiple',   range: '$900 – $2,200' }
-        ]
-      },
-      { icon: '🚿', name: 'Plumbing',       desc: 'Faucets, toilets, pipes',
-        scopes: [
-          { icon: '🔧', label: 'Small',  sub: 'Simple repair',         range: '$150 – $350' },
-          { icon: '🏠', label: 'Medium', sub: 'Fixture replacement',   range: '$350 – $700' },
-          { icon: '🏢', label: 'Large',  sub: 'Multiple fixtures',     range: '$700 – $1,600' }
-        ]
-      },
-      { icon: '⚡', name: 'Electrical',     desc: 'Outlets, fans, fixtures',
-        scopes: [
-          { icon: '🔌', label: 'Small',  sub: '1 – 2 outlets or switches',    range: '$100 – $300' },
-          { icon: '💡', label: 'Medium', sub: 'Fan or multiple light fixtures', range: '$300 – $700' },
-          { icon: '🏢', label: 'Large',  sub: 'Panel or multiple circuits',    range: '$700 – $1,800' }
-        ]
-      },
-      { icon: '🎨', name: 'Painting',       desc: 'Interior rooms',
-        scopes: [
-          { icon: '🖌️', label: 'Small',  sub: '1 room',        range: '$350 – $700' },
-          { icon: '🏠', label: 'Medium', sub: '2 – 3 rooms',   range: '$700 – $1,800' },
-          { icon: '🏢', label: 'Large',  sub: 'Full interior', range: '$1,800 – $5,000' }
-        ]
-      },
-      { icon: '🏗️', name: 'Apartment Turn', desc: 'Make-ready, punch list',
-        scopes: [
-          { icon: '🛏️', label: 'Small',  sub: 'Studio / 1 bedroom', range: '$500 – $1,000' },
-          { icon: '🏠', label: 'Medium', sub: '2 bedrooms',          range: '$1,000 – $2,000' },
-          { icon: '🏢', label: 'Large',  sub: '3+ beds or rehab',    range: '$2,000 – $5,000' }
-        ]
-      },
-      { icon: '🚪', name: 'Doors',          desc: 'Installation & hardware',
-        scopes: [
-          { icon: '🔑', label: 'Small',  sub: 'Lock / adjustment',   range: '$100 – $250' },
-          { icon: '🚪', label: 'Medium', sub: 'Single door install', range: '$250 – $600' },
-          { icon: '🏢', label: 'Large',  sub: 'Multiple doors',      range: '$600 – $1,500' }
-        ]
-      },
-      { icon: '🔨', name: 'Maintenance',    desc: 'General repairs',
-        scopes: [
-          { icon: '⏱️', label: 'Small',  sub: '1 – 2 hour tasks',  range: '$100 – $250' },
-          { icon: '🕐', label: 'Medium', sub: 'Half-day work',      range: '$250 – $550' },
-          { icon: '📅', label: 'Large',  sub: 'Full-day project',   range: '$550 – $1,200' }
-        ]
-      }
-    ],
-    es: [
-      { icon: '🪵', name: 'Pisos',          desc: 'LVP, laminado, porcelana',
-        scopes: [
-          { icon: '📐', label: 'Pequeño', sub: 'Hasta 200 sq ft', range: '$400 – $800' },
-          { icon: '🏠', label: 'Mediano', sub: '200 – 500 sq ft', range: '$800 – $1,800' },
-          { icon: '🏢', label: 'Grande',  sub: '500+ sq ft',      range: '$1,800 – $4,000' }
-        ]
-      },
-      { icon: '🧱', name: 'Drywall',        desc: 'Reparación, parches, textura',
-        scopes: [
-          { icon: '🔧', label: 'Pequeño', sub: 'Parches / hoyos',        range: '$150 – $350' },
-          { icon: '🏠', label: 'Mediano', sub: 'Sección o daño de agua', range: '$350 – $900' },
-          { icon: '🏢', label: 'Grande',  sub: 'Cuarto completo',        range: '$900 – $2,200' }
-        ]
-      },
-      { icon: '🚿', name: 'Plomería',       desc: 'Grifos, inodoros, tuberías',
-        scopes: [
-          { icon: '🔧', label: 'Pequeño', sub: 'Reparación simple',       range: '$150 – $350' },
-          { icon: '🏠', label: 'Mediano', sub: 'Reemplazo de accesorios', range: '$350 – $700' },
-          { icon: '🏢', label: 'Grande',  sub: 'Múltiples accesorios',    range: '$700 – $1,600' }
-        ]
-      },
-      { icon: '⚡', name: 'Eléctrico',      desc: 'Tomas, abanicos, lámparas',
-        scopes: [
-          { icon: '🔌', label: 'Pequeño', sub: '1 – 2 salidas o switches',    range: '$100 – $300' },
-          { icon: '💡', label: 'Mediano', sub: 'Abanico o varias lámparas',   range: '$300 – $700' },
-          { icon: '🏢', label: 'Grande',  sub: 'Panel o circuitos múltiples', range: '$700 – $1,800' }
-        ]
-      },
-      { icon: '🎨', name: 'Pintura',        desc: 'Interior de habitaciones',
-        scopes: [
-          { icon: '🖌️', label: 'Pequeño', sub: '1 habitación',      range: '$350 – $700' },
-          { icon: '🏠', label: 'Mediano', sub: '2 – 3 habitaciones', range: '$700 – $1,800' },
-          { icon: '🏢', label: 'Grande',  sub: 'Casa completa',      range: '$1,800 – $5,000' }
-        ]
-      },
-      { icon: '🏗️', name: 'Apartment Turn', desc: 'Make-ready, punch list',
-        scopes: [
-          { icon: '🛏️', label: 'Pequeño', sub: 'Estudio / 1 cuarto', range: '$500 – $1,000' },
-          { icon: '🏠', label: 'Mediano', sub: '2 cuartos',           range: '$1,000 – $2,000' },
-          { icon: '🏢', label: 'Grande',  sub: '3+ cuartos o rehab', range: '$2,000 – $5,000' }
-        ]
-      },
-      { icon: '🚪', name: 'Puertas',        desc: 'Instalación y herrajes',
-        scopes: [
-          { icon: '🔑', label: 'Pequeño', sub: 'Cerradura / ajuste',      range: '$100 – $250' },
-          { icon: '🚪', label: 'Mediano', sub: 'Instalación de 1 puerta', range: '$250 – $600' },
-          { icon: '🏢', label: 'Grande',  sub: 'Múltiples puertas',       range: '$600 – $1,500' }
-        ]
-      },
-      { icon: '🔨', name: 'Mantenimiento',  desc: 'Reparaciones generales',
-        scopes: [
-          { icon: '⏱️', label: 'Pequeño', sub: '1 – 2 horas',        range: '$100 – $250' },
-          { icon: '🕐', label: 'Mediano', sub: 'Medio día de trabajo', range: '$250 – $550' },
-          { icon: '📅', label: 'Grande',  sub: 'Día completo',        range: '$550 – $1,200' }
-        ]
-      }
-    ]
-  };
-
-  const step1 = document.getElementById('qStep1');
-  const step2 = document.getElementById('qStep2');
-  const step3 = document.getElementById('qStep3');
-  const svcGrid   = document.getElementById('qServices');
-  const scopeGrid = document.getElementById('qScopes');
-  const qRange    = document.getElementById('qRange');
-  const qSvcName  = document.getElementById('qServiceName');
-
-  let selectedIdx = null;
-
-  function show(el)  { el.classList.remove('quoter__hidden'); }
-  function hide(el)  { el.classList.add('quoter__hidden'); }
-
-  function getServices() { return allServices[currentLang] || allServices.en; }
-
-  function buildServices() {
-    svcGrid.innerHTML = '';
-    getServices().forEach((s, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'quoter__card';
-      btn.setAttribute('aria-label', s.name);
-      btn.innerHTML = `<div class="quoter__card-icon">${s.icon}</div><div class="quoter__card-name">${s.name}</div><div class="quoter__card-desc">${s.desc}</div>`;
-      btn.addEventListener('click', () => { selectedIdx = i; selectService(i); });
-      svcGrid.appendChild(btn);
-    });
-  }
-
-  function selectService(i) {
-    buildScopes(getServices()[i]);
-    hide(step1);
-    show(step2);
-    step2.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  function buildScopes(svc) {
-    scopeGrid.innerHTML = '';
-    svc.scopes.forEach(sc => {
-      const btn = document.createElement('button');
-      btn.className = 'quoter__card quoter__card--scope';
-      btn.setAttribute('aria-label', sc.label);
-      btn.innerHTML = `<div class="quoter__card-icon">${sc.icon}</div><div class="quoter__card-name">${sc.label}</div><div class="quoter__card-desc">${sc.sub}</div>`;
-      btn.addEventListener('click', () => showResult(svc, sc));
-      scopeGrid.appendChild(btn);
-    });
-  }
-
-  function showResult(svc, scope) {
-    qSvcName.textContent = `${svc.icon} ${svc.name} · ${scope.label}`;
-    qRange.textContent = scope.range;
-    hide(step2);
-    show(step3);
-    step3.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  document.getElementById('qBack1')?.addEventListener('click', () => { hide(step2); show(step1); });
-  document.getElementById('qBack2')?.addEventListener('click', () => { hide(step3); show(step2); });
-
-  window.rebuildQuoter = function () {
-    buildServices();
-    hide(step2); hide(step3); show(step1);
-  };
-
-  buildServices();
 })();
 
 /* ── Google Ads conversion tracking — calls & WhatsApp ── */

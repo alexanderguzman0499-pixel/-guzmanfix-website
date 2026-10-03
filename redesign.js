@@ -58,19 +58,49 @@ const phrases={
  'Quick Links':'Enlaces','Our Work':'Trabajos','Business Hours':'Horario','Privacy Policy':'Política de privacidad','Book Now':'Solicitar servicio','Residential & Commercial':'Residencial y comercial',
  'Get a Free Estimate →':'Solicitar estimado gratis →','Get Free Estimate':'Cotizar gratis','Call Now':'Llamar ahora',
  'On YouTube':'EN YOUTUBE','Watch Our Work':'Mira nuestros proyectos',
- 'Real projects, real results — follow us for tips & walkthroughs.':'Proyectos reales, resultados reales. Síguenos para ver consejos y recorridos.'
+ 'Real projects, real results — follow us for tips & walkthroughs.':'Proyectos reales, resultados reales. Síguenos para ver consejos y recorridos.',
+ 'See how we transform Tampa Bay homes — real before & after walkthroughs, tips, and project highlights.':'Mira cómo transformamos hogares en Tampa Bay: recorridos reales de antes y después, consejos y proyectos destacados.',
+ '⭐ Leave us a Review':'⭐ Déjanos una reseña',
+ "Yes! Every job gets a free estimate. We'll assess the work, give you a transparent quote with no hidden fees, and you decide if you'd like to proceed. No pressure.":'¡Sí! Todo trabajo incluye un estimado gratis. Evaluamos el trabajo, te damos una cotización transparente sin cargos ocultos y tú decides si quieres continuar. Sin presión.',
+ 'For standard jobs, we typically respond within 24 hours and schedule work within 48 hours. For true emergencies (water leaks, no A/C, electrical hazards), we prioritize same-day response.':'Para trabajos normales solemos responder en 24 horas y programar el trabajo en 48 horas. En emergencias reales (fugas de agua, sin A/C, riesgos eléctricos) damos prioridad a la atención el mismo día.',
+ 'Yes, Guzman Reliable Services LLC is fully insured. You can have peace of mind knowing that your property and our workers are protected on every job.':'Sí, Guzman Reliable Services LLC está totalmente asegurada. Puedes estar tranquilo: tu propiedad y nuestro personal están protegidos en cada trabajo.',
+ 'We serve the entire Tampa Bay region including Clearwater, St. Petersburg, Largo, Tampa, Dunedin, Palm Harbor, Safety Harbor, Pinellas Park, Seminole, Brandon, and surrounding areas. Not sure if we cover your location? Just call!':'Atendemos toda la región de Tampa Bay, incluyendo Clearwater, St. Petersburg, Largo, Tampa, Dunedin, Palm Harbor, Safety Harbor, Pinellas Park, Seminole, Brandon y alrededores. ¿No sabes si llegamos a tu zona? ¡Llámanos!',
+ 'Absolutely. We handle everything from a single outlet replacement or a leaky faucet to full apartment turns, flooring installations, and multi-trade punch lists. No job too big or too small.':'Claro que sí. Hacemos desde cambiar un tomacorriente o reparar un grifo que gotea hasta preparaciones completas de apartamentos, instalación de pisos y listas de reparaciones de varios oficios. Ningún trabajo es demasiado grande ni demasiado pequeño.',
+ "Yes — in fact, property managers and landlords make up a big part of our client base. We're experienced with apartment turns, make-ready work, and ongoing maintenance. Ask about recurring service discounts.":'Sí. De hecho, administradores y arrendadores son una gran parte de nuestros clientes. Tenemos experiencia en preparación de apartamentos, trabajos make-ready y mantenimiento continuo. Pregunta por descuentos en servicios recurrentes.',
+ 'We accept cash, check, Zelle, Venmo, and major credit cards. Payment is typically due upon job completion unless other arrangements are made for larger projects.':'Aceptamos efectivo, cheque, Zelle, Venmo y las principales tarjetas de crédito. Normalmente el pago se hace al terminar el trabajo, salvo acuerdos distintos en proyectos grandes.',
+ "Your satisfaction is our priority. If you're not 100% happy with any aspect of the job, contact us within 7 days and we'll return to make it right at no additional charge. We stand behind our work.":'Tu satisfacción es nuestra prioridad. Si no quedas 100% conforme con algún aspecto del trabajo, contáctanos dentro de 7 días y volveremos a corregirlo sin costo adicional. Respaldamos nuestro trabajo.',
+ 'Prices vary by scope, location, and materials.':'Los precios varían según el alcance, la ubicación y los materiales.',
+ "We stand behind every job we do. If you're not 100% satisfied with our work, we'll come back and make it right — at no extra charge. That's our promise to every client in the Tampa Bay area.":'Respaldamos cada trabajo que hacemos. Si no quedas 100% satisfecho, regresamos a corregirlo sin costo adicional. Es nuestra promesa a cada cliente en Tampa Bay.',
+ 'Work guaranteed or we redo it':'Trabajo garantizado o lo rehacemos',
+ 'At':'En',
+ ", we believe every home deserves professional care — done right, on time, and at a fair price. We're a locally owned and operated handyman company serving homeowners, landlords, and property managers across the Tampa Bay area.":', creemos que todo hogar merece un cuidado profesional: bien hecho, a tiempo y a un precio justo. Somos una empresa local de mantenimiento y reparaciones que atiende a propietarios, arrendadores y administradores en toda el área de Tampa Bay.',
+ 'From a leaky faucet to a full bathroom remodel, we handle jobs of all sizes with the same attention to detail and commitment to quality. No job too big. No job too small.':'Desde un grifo que gotea hasta la remodelación completa de un baño, hacemos trabajos de todos los tamaños con la misma atención al detalle y compromiso con la calidad. Ningún trabajo es demasiado grande ni demasiado pequeño.',
+ 'For urgent issues like water leaks, no A/C, electrical hazards or lock problems, contact us immediately.':'Para urgencias como fugas de agua, falta de A/C, riesgos eléctricos o problemas con cerraduras, contáctanos de inmediato.',
+ 'Based in Clearwater, FL — proudly serving the entire Tampa Bay area, residential and commercial.':'Con base en Clearwater, FL, atendemos con orgullo toda el área de Tampa Bay, residencial y comercial.',
+ "Tampa Bay's trusted handyman — quality repairs and maintenance done right, every time.":'Tu handyman de confianza en Tampa Bay: reparaciones y mantenimiento de calidad, bien hechos siempre.',
+ 'WhatsApp us':'Escríbenos por WhatsApp',
+ 'We use cookies for analytics & advertising. See our':'Usamos cookies para analítica y publicidad. Consulta nuestra',
+ 'Accept':'Aceptar','Decline':'Rechazar',
+ 'Swipe to see more services →':'Desliza para ver más servicios →',
+ 'Our Handyman Services in Tampa Bay':'Nuestros servicios de handyman en Tampa Bay',
+ 'Plumbing Repairs in Clearwater & St. Petersburg':'Plomería en Clearwater y St. Petersburg',
+ 'Electrical Help: Fans, Lighting & Smart Home':'Electricidad: ventiladores, iluminación y hogar inteligente',
+ 'Drywall & Painting Done Right':'Drywall y pintura bien hechos',
+ 'Flooring Installation: LVP, Laminate & Tile':'Instalación de pisos: LVP, laminado y cerámica',
+ 'Apartment Turns & Punch Lists for Property Managers':'Preparación de apartamentos y punch lists para administradores'
 };
 const nodes=[];const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
 while(walker.nextNode()){
  const n=walker.currentNode;
  if(!n.parentElement.closest('script,style,[data-i18n],h1')){
-  const key=n.textContent.trim();if(phrases[key])nodes.push({n,key,raw:n.textContent});
+  const key=n.textContent.trim().replace(/\s+/g,' ');if(phrases[key])nodes.push({n,key,raw:n.textContent});
  }
 }
 function translateRedesign(){
  const es=currentLang==='es';
- document.querySelector('h1').innerHTML=es?'Handyman en Clearwater, FL<br>Reparaciones del hogar en <em>Tampa Bay</em>':'Handyman in Clearwater, FL<br>Tampa Bay <em>Home Repairs</em> Done Right';
- nodes.forEach(({n,key,raw})=>n.textContent=es?raw.replace(key,phrases[key]):raw);
+ document.querySelector('h1').innerHTML=es?'Handyman en Clearwater,&nbsp;FL<br>Reparaciones del hogar en <em>Tampa Bay</em>':'Handyman in Clearwater,&nbsp;FL<br>Tampa Bay <em>Home Repairs</em> Done Right';
+ document.getElementById('hero-intro').innerHTML=es?'Ayudamos a propietarios y administradores de propiedades en Clearwater, St. Petersburg, Largo, Tampa y alrededores con reparaciones rápidas y confiables. Plomería, electricidad, drywall, pintura, pisos y más: un solo equipo de confianza y estimados gratis. Llama al <a href="tel:+17274795969">(727) 479-5969</a>.':'We help homeowners and property managers in Clearwater, St. Petersburg, Largo, Tampa and surrounding areas with fast, reliable repairs. Plumbing, electrical, drywall, painting, flooring and more — one trusted team, free estimates. Call <a href="tel:+17274795969">(727) 479-5969</a>.';
+ nodes.forEach(({n,key,raw})=>n.textContent=es?raw.replace(raw.trim(),phrases[key]):raw);
  document.querySelector('[name="name"]').placeholder=es?'Tu nombre':'Your name';
  document.querySelector('[name="details"]').placeholder=es?'¿Qué necesitas reparar o mejorar?':'What needs fixing or improving?';
  document.querySelector('.hero__ctas a[href^="tel:"]').textContent=(es?'Llamar ':'Call ')+'(727) 479-5969';
