@@ -18,7 +18,7 @@
 .pricing-hint{display:none;font-size:13px;color:#98a9c2;margin:0 0 12px}
 @media(max-width:700px){.pricing-grid{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:86%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding-bottom:10px;margin-inline:-4px}.pricing-card{scroll-snap-align:start}.pricing-hint{display:block}}
 /* SEO headline: longer H1 sized to keep the hero at 2-3 lines; service titles are H2s that look like the old card labels. */
-.hero__left h1.hero__title{font-size:clamp(2.3rem,3.7vw,3.5rem);line-height:1.08;letter-spacing:-.04em!important;max-width:680px}
+.hero__left h1.hero__title{font-size:clamp(2.1rem,3.05vw,3rem);line-height:1.08;letter-spacing:-.04em!important;max-width:none}
 .hero__left h1.hero__title em{display:inline}
 @media(max-width:700px){.hero__left h1.hero__title{font-size:clamp(1.95rem,8vw,2.6rem)}}
 #hero-intro a{color:#e5cb7d;text-decoration:underline;text-underline-offset:3px}
